@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import {BrowserRouter, Routes, Route, Router} from "react-router-dom"
 import './App.css'
 import Registration from "./Registration.jsx";
 import Login from "./Login";
 
 function App() {
- 
   return (
     <>
      <div id="App">
@@ -20,4 +18,8 @@ function App() {
   )
 }
 
+
 export default App
+
+
+

@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&family=Roboto+Flex:opsz,wght@8..144,700&display=swap');
+
+* {
+    background-color: rgba(204,194,220,255);
+    font-family: 'Roboto Flex', sans-serif;
+}
