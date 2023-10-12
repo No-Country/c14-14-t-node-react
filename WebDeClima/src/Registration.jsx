@@ -1,4 +1,6 @@
 import "./Registration.css";
+import { signInWithFacebook } from "./Login/signInWithFacebook";
+import { signInWithGoogle } from "./Login/signInWithGoogle";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from './firebase.js';
 import {Link, useNavigate} from "react-router-dom";
@@ -62,59 +64,80 @@ const Registration = () => {
 
     return (
         <>
-        <div className="containerRegistration">
-            <div>
+        <div className="container-fluid registrationContainer">
                 <h1>Registrarme</h1>
-                <button><FcGoogle />Iniciar sesión con Google</button>
-                <button><BsFacebook />Iniciar sesión con Facebook</button>
-                <p></p>
+
+                <div className="row registrationLogin p-2">
+                    <div className="col-12 pb-1">
+                        <button onClick={signInWithGoogle}><FcGoogle />Continuar con Google</button>
+                    </div>
+                    <div className="col-12">
+                        <button onClick={signInWithFacebook}><BsFacebook />Continuar con Facebook</button>
+                    </div>
+                </div>
+
                 <form method="POST" action="submit">
-                    <div className="registrationEmail">
-                        <input  type="email" placeholder="Correo Electrónico" onChange={(e) => setEmail(e.target.value)} required/>
-                        {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+                    <div className="row registrationEmail p-2">
+                        <div className="col">
+                            <input  type="email" className="col-12" placeholder="Correo Electrónico" onChange={(e) => setEmail(e.target.value)} required/>
+                            {emailError && <p style={{ color: "red" }}>{emailError}</p>}
+                        </div>
                     </div>
-                    <div className="registrationName">
-                        <input type="text" placeholder="Nombre" onChange={(e) => setName(e.target.value)} required/>
+
+                    <div className="row registrationNameLastName p-2">
+                        <div className="col-6 registrationLastName p-2">
+                            <input type="text" className="col-12" placeholder="Apellido" onChange={(e) => setLastName(e.target.value)} required/>
+                        </div>
+                        <div className="col-6 registrationtName p-2">
+                            <input type="text" className="col-12" placeholder="Nombre" onChange={(e) => setName(e.target.value)} required/>
+                        </div>
                     </div>
-                    <div className="registrationLastName">
-                        <input type="text" placeholder="Apellido" onChange={(e) => setLastName(e.target.value)} required/>
+                    
+                    <div className="row registrationPassword p-2">
+                        <div className="col-11">
+                            <input
+                                type={show ? "text" : "password"}
+                                className="col-11"
+                                placeholder="Contraseña"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+                            <button type="button" className="col-1" onClick={switchShow}>
+                                {show ? <AiFillEyeInvisible /> : <AiFillEye />}
+                            </button>
+                        </div>
+                        <div className="col-1">
+                            <abbr title="1 mayúscula, 1 minúscula, 1 caracter especial + - ! @, entre 8 y 15 caracteres">
+                                <AiFillQuestionCircle />
+                            </abbr>
+                        </div>
                     </div>
-                    <div className="registrationPassword">
-                        <input
-                            type={show ? "text" : "password"}
-                            placeholder="Contraseña"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        <abbr title="1 mayúscula, 1 minúscula, 1 caracter especial + - ! @, entre 8 y 15 caracteres">
-                        <AiFillQuestionCircle />
-                        </abbr>
+
+                    <div className="row registrationPasswordRepeat p-2">
+                        <div className="col-12">
+                            <input 
+                                type={showRepeatPassword ? "text" : "password"} 
+                                className="col-11"
+                                placeholder="Repetir Contraseña"
+                                onChange={(e) => setRepeatPassword(e.target.value)} 
+                                required
+                            />
+                            <button type="button" className="col-1" onClick={switchshowRepeatPassword}>
+                                {showRepeatPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                            </button>
+                            {repeatPasswordError && <p style={{ color: "red" }}>{repeatPasswordError}</p>}
+                        </div>
                     </div>
-                    {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
-                    <button type="button" onClick={switchShow}>
-                        {show ? <AiFillEyeInvisible /> : <AiFillEye />}
-                    </button>
-                    <div className="registrationPasswordRepeat">
-                        <input 
-                            type={showRepeatPassword ? "text" : "password"} 
-                            placeholder="Repetir Contraseña"
-                            onChange={(e) => setRepeatPassword(e.target.value)} 
-                            required
-                        />
+                    
+                    <div className="row p-2 registrationSubmitButton">
+                        <button type="submit" className="col-12" disabled={password.length < 8} onClick={submit}>Registrarme</button>
                     </div>
-                    <button type="button" onClick={switchshowRepeatPassword}>
-                        {showRepeatPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-                    </button>
-                    {repeatPasswordError && <p style={{ color: "red" }}>{repeatPasswordError}</p>}
-                    <div><input type="checkbox" name="rememberMe"/><p>Recordar mis datos</p></div>
-                    <div className="registrationSubmitButton">
-                        <button type="submit" disabled={password.length < 8} onClick={submit}>Registrarme</button>
-                    </div>
-                    <div className="registrationToLoginButton">
+
+                    <div className="row p-2 registrationToLoginButton">
                         <Link to={"/login"}> <h3>Ya estas registrado? </h3><button>Ingresa!</button></Link>
                     </div>
                 </form>
-            </div>
         </div>
         </>
     )

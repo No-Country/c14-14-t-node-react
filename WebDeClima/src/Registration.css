@@ -1,6 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&family=Roboto+Flex:opsz,wght@8..144,700&display=swap');
 
 * {
-    background-color: rgba(204,194,220,255);
     font-family: 'Roboto Flex', sans-serif;
+}
+
+body {
+    background-image: url("https://c.pxhere.com/photos/08/b0/rain_raining_saigon_vietnam_window_glass_drops_urban_view-607507.jpg!d");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.registrationContainer{
+    width: 100%;
+    max-width: 500px;
+    padding: 30px 30px 50px 30px;
+    background-color: white;
+    margin-top: 200px;
+    height: 600px;
+
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
 }
