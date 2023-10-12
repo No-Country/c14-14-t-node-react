@@ -6,7 +6,7 @@ import Login from "./Login";
 function App() {
   return (
     <>
-     <div id="App">
+     <div id="App" className="container-fluid align-items-center">
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Registration/>}/>
