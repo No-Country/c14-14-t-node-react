@@ -1,5 +1,5 @@
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from '../firebase'
+import { auth } from '../firebaseConfig/firebase'
 const facebookProvider = new FacebookAuthProvider();
 
 export const signInWithFacebook = async () => {
@@ -7,6 +7,7 @@ export const signInWithFacebook = async () => {
         const result = await signInWithPopup(auth, facebookProvider);
         const credential = FacebookAuthProvider.credentialFromResult(result)
  //     console.log({ credential });
+        const accessToken = credential.accessToken;
         const user = result.user
         return {
          ok: true,
