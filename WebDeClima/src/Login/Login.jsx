@@ -35,11 +35,11 @@ const Login = () => {
     }
 
     return (
-
+// className="container-login" 
         <div className="container-login">
 
             <h3 >Iniciar Sesión</h3>
-            <div className="login-buttons-container">
+            <div className="login-buttons-container" >
 
                 <button onClick={signInWithGoogle} className="form-control form-control-md text-start" ><FcGoogle style={{ border: "none", background: "none", color: "black" }} />  Iniciar sesion con google</button>
                 <button onClick={signInWithFacebook} className="form-control form-control-md text-start"><BsFacebook style={{ border: "none", background: "none", color: "#3b5998" }} />  Iniciar sesion con Facebook</button>

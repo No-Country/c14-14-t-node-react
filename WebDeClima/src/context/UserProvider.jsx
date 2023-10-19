@@ -9,7 +9,9 @@ export const UserProvider = ({children}) => {
         userName: "",
         userEmail: "",
         userNumber: "",
-        userLocation: ""
+        userLocation: "Posadas",
+        savesLocations: []
+
     })
 
 

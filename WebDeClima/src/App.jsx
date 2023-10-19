@@ -14,6 +14,7 @@ function App() {
       <UserProvider>
         <BrowserRouter>
           <NavBar />
+        <hr />
           <Routes>
             <Route path='/' element={<Registration/>}/>
             <Route path='/login' element={<Login/>}/>
