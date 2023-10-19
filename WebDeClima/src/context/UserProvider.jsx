@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
-import {userContext} from './userContext'
+import {UserContext} from './UserContext'
 
-export const UserProvider = () => {
+export const UserProvider = ({children}) => {
     const [signedUser, setSignedUser] = useState({
         isLog: false,
-        userName: "",
+        userName: "Ariel",
         userEmail: "",
         userLocation: ""
 
     })
   return (
 
-<userContext.Provider
-value={
-    signedUser
-}
+<UserContext.Provider
+value={{
+  signedUser
+  
+}}
 >
-
-</userContext.Provider>
+{children}
+</UserContext.Provider>
   )
 }
