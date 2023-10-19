@@ -6,7 +6,8 @@ export const UserProvider = ({children}) => {
         isLog: false,
         userName: "Ariel",
         userEmail: "",
-        userLocation: ""
+        userLocation: "Posadas",
+        savesLocations: []
 
     })
   return (
