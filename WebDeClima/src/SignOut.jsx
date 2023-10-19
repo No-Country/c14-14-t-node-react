@@ -1,11 +1,11 @@
 import { getAuth, signOut } from "firebase/auth";
-import {userContext} from './context/userContext'
+import {UserContext} from './context/userContext'
 import { useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 const SignOut = () => {
     const auth = getAuth();
-    const { signedUser } = useContext(userContext);
+    const { signedUser } = useContext(UserContext);
 
     const navigate = useNavigate();
 

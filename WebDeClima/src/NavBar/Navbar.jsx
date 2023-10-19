@@ -2,10 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import {UserProvider} from "../context/UserProvider" 
 import { getAuth } from "firebase/auth";
-import {userContext} from '../context/userContext'
+import {UserContext} from '../context/userContext'
 
 const LogInLinks = () => {
-    const User = useContext(userContext);
+    const User = useContext(UserContext);
     const user = User.signedUser;
     const isUserLoggedIn = user !== null;
 

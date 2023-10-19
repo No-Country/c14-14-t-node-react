@@ -8,10 +8,10 @@ import { useState, useContext } from "react";
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
 import { AiFillQuestionCircle, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
-import {userContext} from "../context/userContext"
+import {UserContext} from "../context/userContext"
 
 const Registration = () => {
-    const {signedUser} = useContext(userContext);
+    const {signedUser} = useContext(UserContext);
 
     const navigate = useNavigate();
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

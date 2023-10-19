@@ -3,13 +3,10 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import {auth} from "../firebaseConfig/firebase";
 
-
-
-export const UserProvider = ({children}) => {
 export const UserProvider = ({children}) => {
     const [signedUser, setSignedUser] = useState({
         isLog: false,
-        userName: "Ariel",
+        userName: "",
         userEmail: "",
         userNumber: "",
         userLocation: ""
