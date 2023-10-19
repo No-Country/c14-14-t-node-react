@@ -6,9 +6,10 @@ import {auth} from "../firebaseConfig/firebase";
 
 
 export const UserProvider = ({children}) => {
+export const UserProvider = ({children}) => {
     const [signedUser, setSignedUser] = useState({
         isLog: false,
-        userName: "",
+        userName: "Ariel",
         userEmail: "",
         userNumber: "",
         userLocation: ""
