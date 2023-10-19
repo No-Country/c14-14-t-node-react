@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useFetch = (URL) => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState(undefined)
     
     const options = {
         method: 'GET',

@@ -12,8 +12,8 @@ const Home = () => {
     const { signedUser } = useContext(UserContext)
 
     const { data } = useFetch(URL)
+   
     console.log(data);
-
     
     return (
         <div className="row container Home">
