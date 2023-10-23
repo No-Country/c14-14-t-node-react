@@ -3,6 +3,7 @@ import { useContext } from "react";
 import {UserProvider} from "../context/UserProvider" 
 import { getAuth } from "firebase/auth";
 import {UserContext} from '../context/userContext'
+import "./Navbar.css"
 
 const LogInLinks = () => {
     const User = useContext(UserContext);
@@ -12,17 +13,19 @@ const LogInLinks = () => {
     if (!isUserLoggedIn) {
         return (
             <>
-                <Link to="/login" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover">Ingresa</button></Link>
-                <Link to="/" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover">Registrate</button></Link>
+                <Link to="/login" className="m-3"><button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">Iniciar Sesión</button></Link>
+                <Link to="/" className="m-3"><button type="button" className="btn btn-outline-secondary buttonHover rounded-pill registrationButton">Registrarme</button></Link>
             </>
         );
     } else {
         return (
             <>
-                <NavLink to="/home" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover">Inicio</button></NavLink>
-                <NavLink to="/signOut" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover">Cerrar Sesión</button></NavLink>
+                <NavLink to="/home" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Inicio</button></NavLink>
+                <NavLink to="/locationWeather" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Clima X locación</button></NavLink>
+                <NavLink to="/signOut" className="m-3"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Cerrar Sesión</button></NavLink>
+
 {/*                 <NavLink to="/perfil" className="nav-link nav-item">Perfil</NavLink>
-                <NavLink to="/favorites" className="nav-link nav-item"><button id="botonCerrarSesion" className="botonNavLogin">Mis Favoritos</button></NavLink> */}
+                <NavLink to="/favorites" className="nav-link nav-item"><button id="botonFavoritos" className="botonNavLogin">Mis Favoritos</button></NavLink> */}
 
             </>
         );

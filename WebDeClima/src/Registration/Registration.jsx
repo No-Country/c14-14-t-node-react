@@ -1,6 +1,5 @@
 import "./Registration.css";
-import { signInWithFacebook } from "../Login/signInWithFacebook";
-import signInWithGoogle  from "../Login/signInWithGoogle";
+import SignInWithGoogle  from "../Login/SignInWithGoogle";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig/firebase.js';
 import {useNavigate} from "react-router-dom";
@@ -95,6 +94,8 @@ const Registration = () => {
         //we need to catch the whole sign up process if it fails
         .catch((error) => {
             console.log("Something went wrong with sign up: ", error);
+            alert(`¡Email inválido! Es posible que ya exista una cuenta asociada a este correo electrónico. Por favor, revisa tus datos`);
+
         });
         console.log(newUser);
     };
@@ -116,7 +117,8 @@ const Registration = () => {
 
                 <div className="row registrationLogin mb-3">
                     <div className="col-12 m-0 pb-2">
-                        <button className="btn google col-12 border border-secondary shadow buttonHover" onClick={() => signInWithGoogle(navigate)}>
+                        <button className="btn border-0 google col-12 border border-secondary shadow buttonHover" onClick={() => SignInWithGoogle(navigate)}>
+
                             <div className="d-flex align-items-center justify-content-center">
                                 <div className="googleIcon pb-1 pe-1">
                                     <FcGoogle />
@@ -128,25 +130,30 @@ const Registration = () => {
                         </button>
                     </div>
                 </div>
+                <div className="lines-container">
+                    <div className="line"></div>
+                    <div className="circle mb-3">O</div>
+                    <div className="line"></div>
+                </div>
 
                 <form method="POST" action="submit">
                     <div className="row registrationNameLastName">
                         <div className="form-floating mb-3">
                             <input type="email" 
-                                className="form-control"  
+                                className="form-control custom-opacity-bg shadow-lg"  
                                 name="userEmail"
                                 value={userEmail}
                                 placeholder="Correo Electrónico"
                                 onChange={handleChange}
                                 required />
-                            <label htmlFor="floatingInput" className="ms-3 text-secondary">Correo Electrónico</label>
+                            <label htmlFor="floatingInput" className="inputLabelEmail ms-3 text-secondary">Correo Electrónico</label>
                             {emailError && <p style={{ color: "red" }}>{emailError}</p>}
                         </div>
                     </div>
                     <div className="row registrationNameLastName">
                         <div className="form-floating mb-3 col-6 registrationtName">
                             <input type="text" 
-                                className="form-control col-12" 
+                                className="form-control custom-opacity-bg shadow-lg col-12" 
                                 placeholder="Nombre"
                                 name="userName"
                                 value={userName}
@@ -157,7 +164,7 @@ const Registration = () => {
                         </div>
                         <div className="form-floating mb-3 col-6 registrationLastName">
                             <input type="text" 
-                                className="form-control col-12" 
+                                className="form-control custom-opacity-bg shadow-lg col-12" 
                                 placeholder="Apellido"
                                 name="userLastName"
                                 value={userLastName}
@@ -171,7 +178,7 @@ const Registration = () => {
                     <div className="row registrationNumber">
                         <div className="form-floating mb-3 col-12 registrationNumber">
                             <input type="tel" 
-                                className="form-control" 
+                                className="form-control custom-opacity-bg shadow-lg" 
                                 placeholder="Teléfono"  
                                 maxLength="15" 
                                 name="userNumber"
@@ -185,38 +192,35 @@ const Registration = () => {
 
                     
                     <div className="row registrationPassword">
-                            <div className="col mb-3 me-0 registrationPassword">
-                                <div className="form-floating">
-                                <input
-                                    type={show ? "text" : "password"}
-                                    className="form-control me-0 col-8"
-                                    placeholder="Contraseña"
-                                    maxLength="15"
-                                    name="userPassword"
-                                    value={userPassword}
-                                    onChange={handleChange}
-                                    required
-                                ></input>
-                                <label htmlFor="floatingInput" className="ms-3 text-secondary col-8">Contraseña</label>
-                                <button type="button" className="btn ms-0 col-1" onClick={switchShow}>
-                                    {show ? <AiFillEyeInvisible /> : <AiFillEye />}
-                                </button>
-                                <button type="button" className="btn col-1"
-                                    data-bs-toggle="tooltip" data-bs-placement="right"
-                                    data-bs-title="La contraseña debe tener entre 8 y 15 caracteres e incluir 1 mayúscula, 1 minúscula, 1 número y 1 caracter especial (+ - ! @)">
-                                    <AiFillQuestionCircle />
-                                </button>
-                                {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
-
-                                    </div>
-                            </div>
+                        <div className="form-floating">
+                            <input
+                                type={show ? "text" : "password"}
+                                className="form-control custom-opacity-bg shadow-lg"
+                                placeholder="Contraseña"
+                                maxLength="15"
+                                name="userPassword"
+                                value={userPassword}
+                                onChange={handleChange}
+                                required
+                            ></input>
+                            <label htmlFor="floatingInput" className="ms-3 text-secondary">Contraseña</label>
+                            <button type="button" className="btn ms-0 col-1" onClick={switchShow}>
+                                {show ? <AiFillEyeInvisible /> : <AiFillEye />}
+                            </button>
+                            <button type="button" className="btn col-1"
+                                data-bs-toggle="tooltip" data-bs-placement="right"
+                                data-bs-title="La contraseña debe tener entre 8 y 15 caracteres e incluir 1 mayúscula, 1 minúscula, 1 número y 1 caracter especial (+ - ! @)">
+                                <AiFillQuestionCircle />
+                            </button>
+                            {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+                        </div>
                     </div>
 
                     <div className="row registrationPasswordRepeat">
                         <div className="form-floating mb-3 col">
                             <input 
                                 type={showRepeatPassword ? "text" : "password"} 
-                                className="form-control col-11"
+                                className="form-control custom-opacity-bg shadow-lg col-11"
                                 placeholder="Repetir Contraseña"
                                 maxLength="15"
                                 name="userRepeatPassword"
@@ -234,7 +238,7 @@ const Registration = () => {
                     </div>
                     
                     <div className="row p-2 registrationSubmitButton">
-                        <button type="submit" className="btn col-12 btn-outline-dark shadow-lg buttonHover" disabled={userPassword.length < 8} onClick={submit}>Registrarme</button>
+                        <button type="submit" className="btn border-0 rounded col-12 shadow-lg rounded-pill border-0 buttonHover" disabled={userPassword.length < 8} onClick={submit}>Registrarme</button>
                     </div>
                 </form>
         </div>
