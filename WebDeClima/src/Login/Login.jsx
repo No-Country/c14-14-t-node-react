@@ -39,33 +39,42 @@ const Login = () => {
     }
 
     return (
-// className="container-login" 
-        <div className="container-login">
-
-            <h3>Iniciar Sesión</h3>
-            <div className="login-buttons-container" >
-
-                <button onClick={()=>signInWithGoogle(navigate)} className="form-control form-control-md text-start" ><FcGoogle style={{ border: "none", background: "none", color: "black" }} />  Iniciar sesion con google</button>
-                <button onClick={signInWithFacebook} className="form-control form-control-md text-start"><BsFacebook style={{ border: "none", background: "none", color: "#3b5998" }} />  Iniciar sesion con Facebook</button>
-
+        <div className="container-fluid loginContainer mt-3">
+            <h3 className="title pb-4">Iniciar Sesión</h3>
+            <div className="row registrationLogin mb-3">
+                <div className="col-12 m-0 pb-2">
+                    <button className="btn border-0 google col-12 border border-secondary shadow buttonHover" onClick={() => SignInWithGoogle(navigate)}>
+                        <div className="d-flex align-items-center justify-content-center">
+                            <div className="googleIcon pb-1 pe-1">
+                                <FcGoogle />
+                            </div>
+                            <div className="googleText ">
+                                Continuar con Google
+                            </div>
+                        </div>
+                    </button>
+                </div>
             </div>
             <div className="lines-container">
                 <div className="line"></div>
-                <div className="circle"></div>
+                <div className="circlemb-3">O</div>
                 <div className="line"></div>
             </div>
             <form action="" className=" login-buttons-container" onSubmit={handleSubmit}>
                 <div className="row">
-                    <div className="form-floating mb-3">
-                    {/* <FaUserAlt style={{ background: "none", marginRight: "7px" }} /> */}
-                        <input type="email" 
-                            placeholder="correo electronico"
-                            className="form-control"
-                            name="userEmail"
-                            value={userEmail}
-                            onChange={handleChange}
-                            required />
-                        <label htmlFor="floatingInput" className="ms-3 text-secondary">Correo Electrónico</label>
+                    <div className="col mb-3 me-0">
+                        <div className="form-floating">
+                        {/* <FaUserAlt style={{ background: "none", marginRight: "7px" }} /> */}
+                            <input type="email" 
+                                placeholder="correo electronico"
+                                className="form-control custom-opacity-bg shadow-lg"
+                                name="userEmail"
+                                value={userEmail}
+                                onChange={handleChange}
+                                required />
+                            <label htmlFor="floatingInput" className="ms-3 text-secondary">Correo Electrónico</label>
+                        </div>
+                        <div id="passwordError" style={{ color: 'red' }}></div>
                     </div>
                 </div>
                 <div className="row registrationPassword">
@@ -73,7 +82,7 @@ const Login = () => {
                         <div className="form-floating">
                             <input
                                 type={show ? "text" : "password"}
-                                className="form-control me-0 col-8"
+                                className="form-control custom-opacity-bg shadow-lg"
                                 placeholder="Contraseña"
                                 maxLength="15"
                                 name="userPassword"
@@ -81,7 +90,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 required
                             ></input>
-                            <label htmlFor="floatingInput" className="ms-3 text-secondary col-8">Contraseña</label>
+                            <label htmlFor="floatingInput" className="ms-3 text-secondary">Contraseña</label>
                             <button type="button" className="btn ms-0 col-1" onClick={switchShow}>
                                 {show ? <AiFillEyeInvisible /> : <AiFillEye />}
                             </button>
@@ -89,7 +98,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="row p-2 loginSubmitButton">
-                    <button type="submit" className="btn col-12 btn-outline-dark shadow-lg buttonHover">Inciar sesión</button>
+                    <button type="submit" className="btn border-0 col-12 shadow-lg rounded-pill buttonHover">Inciar sesión</button>
                 </div>
             </form>
         </div>
