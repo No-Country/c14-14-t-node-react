@@ -1,6 +1,5 @@
 import "./Registration.css";
-import { signInWithFacebook } from "../Login/signInWithFacebook";
-import signInWithGoogle  from "../Login/signInWithGoogle";
+import SignInWithGoogle  from "../Login/SignInWithGoogle";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig/firebase.js';
 import {useNavigate} from "react-router-dom";

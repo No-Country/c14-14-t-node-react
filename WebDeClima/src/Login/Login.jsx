@@ -6,7 +6,7 @@ import { BsFacebook } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import {useNavigate} from "react-router-dom";
-import { signInWithEmail } from "./signInWithEmail";
+import { SignInWithEmail } from "./SignInWithEmail";
 import { useState } from "react";
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        signInWithEmail(userEmail,userPassword, navigate)
+        SignInWithEmail(userEmail,userPassword, navigate)
         console.log(FormData,user);
     }
 
