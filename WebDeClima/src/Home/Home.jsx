@@ -2,26 +2,50 @@
 import Clima from './components/pages/clima/clima'
 import ServiceLocation from './service/service-location' */
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { useFetch } from "../Hooks/useFetch";
 import { HoursCards } from "./HoursCards";
 
-const URL = "http://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=Posadas&days=1&aqi=no&alerts=no"
+
+
 const Home = () => {
-   
+    const [userPosition, setUserPosition] = useState("Resistencia")
+    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${userPosition}&days=1&aqi=no&alerts=no`
     const { signedUser } = useContext(UserContext)
 
     const { data } = useFetch(URL)
 
-    const getPosition = () => {
-        
+    function success (position) {
+        var latitud = position.coords.latitude;
+        var longitud = position.coords.longitude;
+        console.log(latitud,longitud);
+       
+       setUserPosition(`${latitud},${longitud}`)
+       console.log(userPosition);
     }
+    function getPosition()  {
    
-  console.log(signedUser,data);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success)     
+        console.log("ubicacion obtenida");
+    
+    } else {"No se pudo obtener la ubicacion"}
+
+
+        
+}
+
+useEffect(() => {
+ setTimeout(getPosition(),"2000")
+}, [])
+
+   
+
     
     return (
         <div className="home_container container">
+            
             <h1 className="text-start">Hola Nombre!</h1>
             <div>
 
