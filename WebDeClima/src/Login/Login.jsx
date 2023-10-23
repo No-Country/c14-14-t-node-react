@@ -1,4 +1,4 @@
-import  SignInWithGoogle from "./SignInWithGoogle";
+import  signInWithGoogle from "./signInWithGoogle";
 import { signInWithFacebook } from "./signInWithFacebook";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import { FcGoogle } from "react-icons/fc";
@@ -6,7 +6,7 @@ import { BsFacebook } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import {useNavigate} from "react-router-dom";
-import { SignInWithEmail } from "./signInWithEmail";
+import { signInWithEmail } from "./signInWithEmail";
 import { useState } from "react";
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        SignInWithEmail(userEmail,userPassword, navigate)
+        signInWithEmail(userEmail,userPassword, navigate)
         console.log(FormData,user);
     }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useFetch = (URL) => {
-    const [data, setData] = useState()
+    const [data, setData] = useState(undefined)
     
     const options = {
         method: 'GET',
@@ -17,7 +17,7 @@ export const useFetch = (URL) => {
         .then(resp => resp.json())
         .then(result => {
 
-            console.log(result);            
+                
             setData(result)
             
         }) 

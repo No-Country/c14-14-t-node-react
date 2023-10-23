@@ -3,7 +3,7 @@ import { auth }  from '../firebaseConfig/firebase'
 
 const googleProvider = new GoogleAuthProvider();
 
-const SignInWithGoogle = async(navigate) => {
+const signInWithGoogle = async(navigate) => {
 
     try {
         const result = await signInWithPopup(auth, googleProvider);
@@ -32,4 +32,4 @@ const SignInWithGoogle = async(navigate) => {
     }
 }
 
-export default SignInWithGoogle;
+export default signInWithGoogle;

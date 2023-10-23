@@ -1,6 +1,6 @@
 import "./Registration.css";
 import { signInWithFacebook } from "../Login/signInWithFacebook";
-import SignInWithGoogle  from "../Login/SignInWithGoogle";
+import signInWithGoogle  from "../Login/signInWithGoogle";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig/firebase.js';
 import {useNavigate} from "react-router-dom";
@@ -90,7 +90,7 @@ const Registration = () => {
         createUserWithEmailAndPassword(auth, userEmail, userPassword)
         .then((userCredential) => {
             const user = userCredential.user;
-            navigate("/login")
+            navigate("/home")
         })
         //we need to catch the whole sign up process if it fails
         .catch((error) => {
@@ -119,6 +119,7 @@ const Registration = () => {
                 <div className="row registrationLogin mb-3">
                     <div className="col-12 m-0 pb-2">
                         <button className="btn border-0 google col-12 border border-secondary shadow buttonHover" onClick={() => SignInWithGoogle(navigate)}>
+
                             <div className="d-flex align-items-center justify-content-center">
                                 <div className="googleIcon pb-1 pe-1">
                                     <FcGoogle />
