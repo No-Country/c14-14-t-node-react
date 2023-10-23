@@ -38,7 +38,7 @@ const Home = () => {
 
 useEffect(() => {
  setTimeout(getPosition(),"2000")
-}, [])
+}, [userPosition])
 
    
 
