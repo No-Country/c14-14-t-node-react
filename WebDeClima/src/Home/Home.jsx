@@ -13,12 +13,16 @@ const Home = () => {
     const { signedUser } = useContext(UserContext)
 
     const { data } = useFetch(URL)
+
+    const getPosition = () => {
+        
+    }
    
   console.log(signedUser,data);
     
     return (
         <div className="home_container container">
-            <h1 className="text-start">Hola Ariel!</h1>
+            <h1 className="text-start">Hola Nombre!</h1>
             <div>
 
                 {

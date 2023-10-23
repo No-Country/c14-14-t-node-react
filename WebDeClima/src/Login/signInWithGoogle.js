@@ -1,18 +1,22 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth }  from '../firebaseConfig/firebase'
+
 const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async() => {
+const signInWithGoogle = async(navigate) => {
+
     try {
         const result = await signInWithPopup(auth, googleProvider);
         const credential = GoogleAuthProvider.credentialFromResult(result)
        // console.log({ credential });
        const user = result.user
+       
+       navigate("/home");
        return {
         ok: true,
         user,
-
        }
+
     }
     catch (error) {
         const errorCode = error.code;
@@ -27,3 +31,5 @@ export const signInWithGoogle = async() => {
        }
     }
 }
+
+export default signInWithGoogle;
