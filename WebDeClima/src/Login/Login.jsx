@@ -38,7 +38,7 @@ const Login = () => {
 // className="container-login" 
         <div className="container-login">
 
-            <h3 >Iniciar Sesión</h3>
+            <h3>Iniciar Sesión</h3>
             <div className="login-buttons-container" >
 
                 <button onClick={signInWithGoogle} className="form-control form-control-md text-start" ><FcGoogle style={{ border: "none", background: "none", color: "black" }} />  Iniciar sesion con google</button>

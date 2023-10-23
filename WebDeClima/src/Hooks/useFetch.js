@@ -17,7 +17,7 @@ export const useFetch = (URL) => {
         .then(resp => resp.json())
         .then(result => {
 
-            console.log(result);            
+                
             setData(result)
             
         }) 

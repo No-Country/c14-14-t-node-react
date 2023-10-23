@@ -12,14 +12,20 @@ body {
 
 .registrationContainer{
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
     padding: 30px 30px 50px 30px;
     background-color: white;
     margin-top: 200px;
-    height: 800px;
+    min-height: 700px;
+    max-height: 1000px;
 
     -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+}
+
+.buttonHover:hover {
+    background-color: lightblue;
+    color: black;
 }

@@ -1,0 +1,58 @@
+.forecast_container {
+    background: #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 250px;
+    margin: auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+.icon_forecast {
+    width: 120px;
+    position: absolute;
+    top: -50px;
+    right: -30px;
+}
+
+.days_container {
+    
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 5px;
+}
+.days_container > span{
+    
+    background: #777;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: fit-content;
+    height: 30px;
+    cursor: pointer;
+
+}
+.hoursCards_container {
+    display: flex;
+    width: 47%;
+    overflow: hidden;
+    gap: 10px;
+    
+    
+}
+.hoursCard_item {
+    background: #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    
+    
+    
+    
+}
