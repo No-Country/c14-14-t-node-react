@@ -1,9 +1,9 @@
 import "./Registration.css";
 import { signInWithFacebook } from "../Login/signInWithFacebook";
-import { signInWithGoogle } from "../Login/signInWithGoogle";
+import SignInWithGoogle  from "../Login/SignInWithGoogle";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig/firebase.js';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { useState, useContext } from "react";
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
@@ -116,7 +116,7 @@ const Registration = () => {
 
                 <div className="row registrationLogin mb-3">
                     <div className="col-12 m-0 pb-2">
-                        <button className="btn google col-12 border border-secondary shadow buttonHover" onClick={signInWithGoogle}>
+                        <button className="btn google col-12 border border-secondary shadow buttonHover" onClick={() => SignInWithGoogle(navigate)}>
                             <div className="d-flex align-items-center justify-content-center">
                                 <div className="googleIcon pb-1 pe-1">
                                     <FcGoogle />
