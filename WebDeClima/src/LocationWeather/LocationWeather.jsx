@@ -38,6 +38,11 @@ const LocationWeather = () => {
         if (data.weather[0].main === "Thunderstorm") return <img src={iconoTormenta} alt="" />;
         if (data.weather[0].main === "Snow") return <img src={iconoNieve} alt="" />;
     }
+
+    useEffect(() => {
+
+    }, []);
+
     return (
         <div className="container-fluid">
             <div className="container-clima-destino">
@@ -47,7 +52,8 @@ const LocationWeather = () => {
                         onChange={event => setLocation(event.target.value)}
                         onKeyUp={searchLocation}
                         placeholder="Ingresar destino"
-                        type="text" />
+                        name="destino"
+                        type="search" />
                 </div>
                 <div className="container-clima-top-bottom">
                     <div className="clima-top">

@@ -5,19 +5,18 @@
 }
 
 body {
-    background-image: url("../assets//imagen.jpg");
+    background-image: url("../assets/imagen2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 100px;
+    display: flex;
 }
 
 .registrationContainer{
-    width: 100%;
-    max-width: 1000px;
     padding: 30px 30px 50px 30px;
     margin-top: 200px;
-    min-height: 700px;
-    max-height: 1000px;
+    width: 70%;
 }
 
 .buttonHover:hover {
@@ -35,4 +34,11 @@ body {
 .inputLabelEmail{
     background-color: transparent;
     color: red;
+}
+
+/* Media Query para pantallas más pequeñas que 500px */
+@media (max-width: 440px) {
+    html {
+        background-size: cover; /* Ajusta la imagen de fondo para cubrir toda la pantalla */
+    }
 }

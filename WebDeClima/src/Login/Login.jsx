@@ -1,5 +1,4 @@
-import  signInWithGoogle from "./signInWithGoogle";
-import { signInWithFacebook } from "./signInWithFacebook";
+import  signInWithGoogle from "./SignInWithGoogle";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from 'react-icons/bs'
