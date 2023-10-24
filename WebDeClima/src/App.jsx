@@ -7,6 +7,7 @@ import Login from "./Login/Login";
 import Home from "./Home/Home"
 import SignOut from './SignOut';
 import LocationWeather from "./LocationWeather/LocationWeather";
+import Forecast from "./Forecast";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
             <Route path='/locationWeather' element={<LocationWeather/>}/>
+            <Route path='/forecast/:location' element={<Forecast/>}/>
           </Routes>
         </BrowserRouter>
       </UserProvider>
