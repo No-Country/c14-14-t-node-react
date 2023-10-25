@@ -1,5 +1,5 @@
 .forecast_container {
-    background: #ddd;
+   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,8 @@
     margin: auto;
     border-radius: 10px;
     position: relative;
+    background-color: rgba(255,255,255,0.2);
+    
 }
 
 .icon_forecast {
@@ -16,6 +18,17 @@
     position: absolute;
     top: -50px;
     right: -30px;
+}
+
+.corazon_container {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    cursor: pointer;
+}
+.corazon_container >img{
+    width: 25px;
+    
 }
 
 .days_container {
@@ -41,18 +54,70 @@
 }
 .hoursCards_container {
     display: flex;
-    width: 47%;
+    margin: auto;
     overflow: hidden;
     gap: 10px;
-    
+    width: 75%;
     
 }
 .hoursCard_item {
-    background: #ddd;
+    
+    background-color: rgba(255,255,255,0.2);
     padding: 15px;
     border-radius: 10px;
     
+       
     
     
+}
+
+.other_info_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    gap: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    position: relative;
+        
+}
+
+.other_info_item {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border-radius: 8px;
+width: 150px;
+height: 120px;
+
+
+background-color: rgba(255,255,255,0.2);
+}
+
+.other_info_item > img {
+    width: 40px;
+
+
+    
+}
+
+.arrows_container {
+position: absolute;
+
+top: 20;
+left: 15%;
+width: 70vw;
+display: flex;
+justify-content: space-between;
+}
+
+.arrows {
+    background: none;
+    border: 1px solid;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     
 }
