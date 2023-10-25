@@ -1,5 +1,6 @@
 import "./LocationWeather.css"
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import iconoViento from "../assets/iconos/wind_1483223.png";
 import iconoNublado from "../assets/iconos/cloudy_1163661.png";
@@ -28,7 +29,6 @@ const LocationWeather = () => {
             setLocation('')
         }
     }
-
 
 
     const weatherIcon = () => {
@@ -91,6 +91,8 @@ const LocationWeather = () => {
                     }
                 </div>
             </div>
+            <Link to={`/forecast`}><button className="btn">Ver pronostico extendido</button></Link>
+            
         </div>
     )
 }

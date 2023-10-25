@@ -20,7 +20,7 @@ body {
 }
 
 .buttonHover:hover {
-    background-color: rgba(163,204,204,255);
+    background-color: #273859;
     color: black;
 }
 

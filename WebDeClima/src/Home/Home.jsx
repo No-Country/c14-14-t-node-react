@@ -1,13 +1,17 @@
 /* import Mapa from './components/pages/mapas/mapas'
 import Clima from './components/pages/clima/clima'
 import ServiceLocation from './service/service-location' */
-
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { useFetch } from "../Hooks/useFetch";
 import { HoursCards } from "./HoursCards";
+
 import { HomeMap } from "./HomeMap";
 import { OtherInfo } from "./OtherInfo";
+
+import Browser from "./Browser";
+
 
 
 
@@ -27,6 +31,7 @@ const Home = () => {
        setUserPosition(`${latitud},${longitud}`)
       
     }
+
     function getPosition()  {
    
     if (navigator.geolocation) {
@@ -45,10 +50,12 @@ useEffect(() => {
 
    
 
+    useEffect(() => {
+    setTimeout(getPosition(),"2000")
+    }, [userPosition])
     
     return (
-        <div className="home_container container">
-            
+        <div className="home_container container-fluid">
             <h1 className="text-start">Hola Nombre!</h1>
             <div>
 
