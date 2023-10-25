@@ -6,7 +6,7 @@ import NavBar from './NavBar/Navbar'
 import Login from "./Login/Login";
 import Home from "./Home/Home"
 import SignOut from './SignOut';
-import LocationWeather from "./LocationWeather/LocationWeather";
+/* import LocationWeather from "./LocationWeather/LocationWeather"; */
 import Forecast from "./Forecast";
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
-            <Route path='/locationWeather' element={<LocationWeather/>}/>
-            <Route path='/forecast/:location' element={<Forecast/>}/>
+            {/* <Route path='/locationWeather' element={<LocationWeather/>}/> */}
+            <Route path='/forecast' element={<Forecast/>}/>
           </Routes>
         </BrowserRouter>
       </UserProvider>

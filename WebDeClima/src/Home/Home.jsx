@@ -39,7 +39,6 @@ const Home = () => {
     return (
         <div className="home_container container-fluid">
             <h1 className="text-start">Hola Nombre!</h1>
-            <Browser/>
             <div>
 
                 {

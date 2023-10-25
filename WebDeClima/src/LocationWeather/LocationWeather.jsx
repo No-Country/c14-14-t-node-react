@@ -91,7 +91,7 @@ const LocationWeather = () => {
                     }
                 </div>
             </div>
-            <Link to={`/forecast/${data.name}`}><button className="btn">Ver pronostico extendido</button></Link>
+            <Link to={`/forecast`}><button className="btn">Ver pronostico extendido</button></Link>
             
         </div>
     )
