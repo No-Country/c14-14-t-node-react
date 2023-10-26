@@ -28,7 +28,7 @@ const Forecast = () => {
           setLoading(true);
     
           //get longitude and latitude based on city that user inputs
-          let resp = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=67646a4c3b21882f4ac4ce62b72cd535&lang=es`);          
+          let resp = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=67646a4c3b21882f4ac4ce62b72cd535&lang=es`);          
           const lat = resp.data[0].lat;
           const long = resp.data[0].lon;
     

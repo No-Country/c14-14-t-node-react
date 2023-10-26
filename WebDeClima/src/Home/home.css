@@ -33,24 +33,39 @@
 
 .days_container {
     
-    width: 40%;
+    width: 30%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: auto;
-    margin-top: 5px;
-}
-.days_container > span{
     
-    background: #777;
-    border-radius: 10px;
+    
+}
+.active_days{
+    
+    background-color:rgba(100,100,100,0.6);
+    border-radius: 30px;
     color: white;
     display: flex;
     align-items: center;
-    padding: 15px;
-    width: fit-content;
-    height: 30px;
+    justify-content: center;
+    width: 140px;
+    height: 48px;
     cursor: pointer;
+    font-weight: 200;
 
+}
+
+.disable_days {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 30px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 48px;
+    cursor: pointer;
+    font-weight: 200;
 }
 .hoursCards_container {
     display: flex;
@@ -59,12 +74,18 @@
     gap: 10px;
     width: 75%;
     
+    
+   
+   
+    
+    
 }
 .hoursCard_item {
     
     background-color: rgba(255,255,255,0.2);
     padding: 15px;
     border-radius: 10px;
+    height: 150px;
     
        
     
@@ -79,7 +100,7 @@
     gap: 10px;
     padding: 8px;
     border-radius: 10px;
-    position: relative;
+    /* position: relative; */
         
 }
 
@@ -102,23 +123,40 @@ background-color: rgba(255,255,255,0.2);
 
     
 }
+.days_arrows_container {
+    position: relative;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    
+}
 
 .arrows_container {
 position: absolute;
 
-top: 20;
-left: 15%;
-width: 70vw;
+
+right: 15%;
+width: 10vw;
 display: flex;
 justify-content: space-between;
+z-index: 200;
 }
 
 .arrows {
     background: none;
-    border: 1px solid;
-    width: 30px;
+    border: none;
+    /* width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: 50%; */
+    
+}
+
+.arrows > img{
+   
+    width: 20px;
+    
+    
     
 }
 

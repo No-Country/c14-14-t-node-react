@@ -1,19 +1,8 @@
-import React, { useContext, useState } from 'react'
-import { UserContext } from '../context/userContext'
-import { useFetch } from '../Hooks/useFetch'
 
-export const HoursCards = ({data}) => {
+
+export const HoursCards = ({data,slide}) => {
   // new Date().getHours()
-  const [slide, setSlide] = useState(0)
-
-  const handleNextSlide = () => {
-
-    setSlide((slide) => slide === 7 ? slide = 0 : slide + 1)
-
-  }
-  const handlePrevSlide = () => {
-    setSlide((slide) => slide === 0 ? slide = 7 : slide - 1)
-  }
+  
 
 
 
@@ -44,11 +33,7 @@ export const HoursCards = ({data}) => {
         }  
       
     </div>
-    <div className='arrows_container'>
-        <button onClick={handlePrevSlide}  className='arrows'>←</button>
-        <button onClick={handleNextSlide}  className='arrows'>→</button>
-      
-    </div>
+   
     </div>
   )
 }
