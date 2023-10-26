@@ -23,7 +23,7 @@ function App() {
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
             {/* <Route path='/locationWeather' element={<LocationWeather/>}/> */}
-            <Route path='/forecast' element={<Forecast/>}/>
+            <Route path='/forecast/:city' element={<Forecast/>}/>
           </Routes>
         </BrowserRouter>
       </UserProvider>

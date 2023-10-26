@@ -8,9 +8,12 @@ import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
 import { AiFillQuestionCircle, AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import {UserContext} from "../context/userContext"
+import { db } from "../firebaseConfig/firebase";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const Registration = () => {
     const {signedUser} = useContext(UserContext);
+    const clientsCollection = collection(db, "Clientes");
 
     const navigate = useNavigate();
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -89,16 +92,26 @@ const Registration = () => {
         createUserWithEmailAndPassword(auth, userEmail, userPassword)
         .then((userCredential) => {
             const user = userCredential.user;
-            navigate("/home")
-        })
-        //we need to catch the whole sign up process if it fails
-        .catch((error) => {
-            console.log("Something went wrong with sign up: ", error);
-            alert(`¡Email inválido! Es posible que ya exista una cuenta asociada a este correo electrónico. Por favor, revisa tus datos`);
-
-        });
+            setDoc(doc(db, "Clientes", user.uid), {
+              Nombre: userName,
+              Apellido: userLastName,
+              Email: userEmail,
+              Telefono: userNumber,
+              Contraseña: userPassword,
+            })
+              //ensure we catch any errors at this stage to advise us if something does go wrong
+              .catch((error) => {
+                console.log("Something went wrong with sign up: ", error);
+                alert(`¡Email inválido! Es posible que ya exista una cuenta asociada a este correo electrónico. Por favor, revisa tus datos`);
+              });
+            navigate("/home");
+          })
         console.log(newUser);
     };
+
+    
+
+
 
     const validatePassword = () => {
         let validate_password = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!+@-])(?=.*\d).{8,15}$/;
