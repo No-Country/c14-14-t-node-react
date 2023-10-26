@@ -12,7 +12,8 @@ import { OtherInfo } from "./OtherInfo";
 
 import Browser from "./Browser";
 import { DaysCards } from "./DaysCards";
-import { FrequentLocations } from "./FrequentLocations";
+
+import { FavLocationsContainer } from "./FavLocations/FavLocationsContainer";
 
 
 
@@ -79,7 +80,7 @@ const Home = () => {
 
     return (
         <div className="home_container container-fluid">
-            <h1 className="text-start">Hola Nombre!</h1>
+            <h1 className="text-start">Hola {signedUser.displayName}!</h1>
             <div>
 
                 {
@@ -157,9 +158,9 @@ const Home = () => {
 
 
             </div>
-
+                <hr />
                 <div>
-                    <FrequentLocations/>
+                    <FavLocationsContainer/>
                 </div>
 
 
