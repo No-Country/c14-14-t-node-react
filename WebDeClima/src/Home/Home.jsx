@@ -101,6 +101,7 @@ const Home = () => {
     
     
       return (
+        <>
         <div className="home_container container-fluid">
             <div className='text-center mt-5'>
                 <input onChange={(e) => { setCity(e.target.value) }} />
@@ -155,20 +156,7 @@ const Home = () => {
                         ) : "No se encontro informacion"}
                        
                     </div>
-                        <div className="days_container">
-                            <span>Hora</span>
-                            <span>dia</span>
-                            <span>fin de semana</span>
-                        </div>
-                        <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div>
-    
-                        <div style={{marginBottom: "2%"}}>
-                            <HoursCards data={data}/>
-                        </div>
-                        <div className="container" style={{display: "flex",alignItems: "center",width: "80%",justifyContent: "space-around"}}>
-                            <HomeMap/>
-                            <OtherInfo data={data}/>
-                        </div>
+                        
                 </div>
             ) : (
                 <div>
@@ -212,8 +200,7 @@ const Home = () => {
                     
                 </div>
             )}
-                       // : "No se encontro informacion"
-             //   }
+                    
             </div>
                     <div className="days_arrows_container">
 
@@ -261,7 +248,7 @@ const Home = () => {
                     <FavLocationsContainer/>
                 </div>
 
-        </div>
+        </>
     );
 }
 
