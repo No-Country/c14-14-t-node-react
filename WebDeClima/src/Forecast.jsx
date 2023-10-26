@@ -1,12 +1,15 @@
 import React from 'react'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const Forecast = () => {
     const [weatherData, setWeatherData] = useState([]);
-    const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
+
+    const { city } = useParams();
+    
 
     const unitTypeSymbol = {
         'imperial': '°F',
@@ -14,13 +17,8 @@ const Forecast = () => {
         '': 'K',
       };
     
-    //set unit type
-    //const unitType = 'imperial';
-    //const unitType = '';
     const unitType = 'metric';
     
-
-
     async function getWeatherData() {
         try {
           setError();
@@ -50,6 +48,52 @@ const Forecast = () => {
     
       }
 
+      
+
+    /*   useEffect(() => {
+        if (city === null) {
+          getUserPosition()
+        } else {
+            getWeatherData(); // Call your existing function if city is not null
+          }
+      }, []);
+
+
+        async function getUserPosition() {
+            try {
+              setError();
+              setLoading(true);
+    
+              // Get user's geolocation
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                  const userLat = position.coords.latitude;
+                  const userLon = position.coords.longitude;
+    
+                  const apiKey = '67646a4c3b21882f4ac4ce62b72cd535'; // Replace with your API key
+    
+                  const userWeatherData = await axios.get(
+                    `https://api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLon}&appid=${apiKey}&units=${unitType}&lang=es`
+                  );
+    
+                  setWeatherData(userWeatherData.data.list);
+                });
+              } else {
+                console.error('Geolocation is not supported by your browser.');
+              }
+            } catch (e) {
+              console.error(e);
+              setError(e);
+            } finally {
+              setLoading(false);
+            }
+          }
+         */
+          useEffect(() => {
+            getWeatherData();
+        }, [])
+      
+
 
   return (
     <>
@@ -59,16 +103,6 @@ const Forecast = () => {
       </div>
       : <div className='container'>
             <div className='row'>
-                <div className='text-center mt-5'>
-                    <input onChange={(e) => { setCity(e.target.value) }} />
-                    <button className='ms-2' onClick={getWeatherData} variant="primary">Submit</button>{' '}
-
-                    {error ? <div className='text-danger'>
-                    Parece que la ciudad no existe...
-                    </div> : <h3 className='mt-3'> Pronostico en... {city}
-                    </h3>}
-                </div>
-
                 {weatherData.map((weatherData, index) =>
                     <div sm={4} className="mt-3" key={index}> 
                         <div className='card p-3 shadow border-0 mt-3 rounded'>

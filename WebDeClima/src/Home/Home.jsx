@@ -118,8 +118,12 @@ useEffect(() => {
                                         <div  className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
                                             <img src={corazonState ? "./iconos/corazon_fav.png" : "./iconos/corazon.png"} alt="" />
                                         </div>
+                                        <div>
+                            <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                        </div>
                             </div>
                         ) : "No se encontro informacion"}
+                       
                     </div>
                         <div className="days_container">
                             <span>Hora</span>
@@ -171,6 +175,9 @@ useEffect(() => {
                                                 </div>
                             </div>
                         ) : "No se encontro informacion"}
+                        <div>
+                            <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                        </div>
                     </div>
                     
                 </div>
