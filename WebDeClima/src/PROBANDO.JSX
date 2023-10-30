@@ -1,55 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+
 
 const Forecast = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [selectedDate, setSelectedDate] = useState(null);
 
-  const { city } = useParams();
-
-  const unitTypeSymbol = {
-    imperial: '°F',
-    metric: '°C',
-    '': 'K',
-  };
-
-  const unitType = 'metric';
-
-  async function getWeatherData() {
-    try {
-      setError();
-      setLoading(true);
-
-      // get longitude and latitude based on the city that the user inputs
-      let resp = await axios.get(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=67646a4c3b21882f4ac4ce62b72cd535&lang=es`
-      );
-      const lat = resp.data[0].lat;
-      const long = resp.data[0].lon;
-
-      // set your API key here
-      const apiKey = '67646a4c3b21882f4ac4ce62b72cd535';
-
-      // Make weather API call using axios
-      const weatherData = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unitType}&lang=es`
-      );
-
-      setWeatherData(weatherData.data.list);
-    } catch (e) {
-      console.log(e);
-      setError(e);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getWeatherData();
-  }, []);
 
   // Function to group weather data by day
   const groupWeatherDataByDay = (data) => {
@@ -62,10 +17,6 @@ const Forecast = () => {
       groupedData[date].push(item);
     });
     return groupedData;
-  };
-
-  const handleCardClick = (date) => {
-    setSelectedDate(date);
   };
 
   return (
@@ -85,7 +36,9 @@ const Forecast = () => {
                       <h3>{new Date(date).toLocaleDateString('es-ES', { weekday: 'long' })}</h3>
                       <p>{new Date(date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}</p>
                     </div>
-                    <div style={{ width: '70%' }}>
+
+                    
+                    <div className="row" style={{ width: '70%' }}>
                       <div id={`carousel-${date}`} className="carousel slide" data-bs-ride="carousel">
                         <div className="carousel-inner">
                           {dayData.map((item, index) => (
@@ -100,13 +53,7 @@ const Forecast = () => {
                                     Temperatura: {item.main.temp} {unitTypeSymbol[unitType]}
                                   </div>
                                   <div>
-                                    Sensación térmica: {item.main.feels_like} {unitTypeSymbol[unitType]}
-                                  </div>
-                                  <div>
-                                    Humedad: {item.main.humidity} %
-                                  </div>
-                                  <div>
-                                    Presión: {item.main.pressure} Pa
+                                    Sensación térmica {item.main.feels_like} {unitTypeSymbol[unitType]}
                                   </div>
                                 </div>
                                 <div style={{ width: '30%' }} className="text-center">
@@ -114,6 +61,9 @@ const Forecast = () => {
                                     src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                                     alt="Weather Icon"
                                   />
+                                </div>
+                                <div style={{ width: '30%' }}>
+                                  <div>{item.weather[0].main}</div>
                                 </div>
                               </div>
                             </div>
@@ -151,4 +101,3 @@ const Forecast = () => {
 };
 
 export default Forecast;
-

@@ -1,12 +1,29 @@
-import  { useContext, useState } from 'react'
+import  { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/userContext'
 import { useFetch } from '../Hooks/useFetch'
 
-export const DaysCards = ({slide}) => {
+export const DaysCards = ({slide, city}) => {
     // http://api.weatherapi.com/v1/forecast.json?key=<YOUR_API_KEY>&q=07112&days=7
-    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=Posadas&days=10&aqi=no&alerts=no`
-  const {data} = useFetch(URL)
+    const [userPosition, setUserPosition] = useState("Buenos Aires")
+
+    function success(position) {
+      var latitud = position.coords.latitude;
+      var longitud = position.coords.longitude;
+      setUserPosition(`${latitud},${longitud}`)
+  }
+  function getPosition() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(success)
+          console.log("ubicacion obtenida");
+      } else { "No se pudo obtener la ubicacion" }
+  }
+
+    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${userPosition || city}&days=10&aqi=no&alerts=no`
+
+    const {data} = useFetch(URL)
     console.log(data);
+    console.log("USERPOSITION");
+    console.log(userPosition);
 
 
     const nameDay = (param)=> {
@@ -17,8 +34,6 @@ export const DaysCards = ({slide}) => {
         return nombreDelDia;
 
     }
-
-    // }
   
   return (
     <div className='hoursCards_container container' >
@@ -27,7 +42,6 @@ export const DaysCards = ({slide}) => {
       {
         (data !== undefined) ? 
             data.forecast.forecastday.map((element,index) => (
-
             <div key={index} className= 'hoursCard_item'> 
            
                 <span>{nameDay(element.date)} </span>
