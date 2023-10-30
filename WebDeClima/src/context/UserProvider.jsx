@@ -13,6 +13,7 @@ export const UserProvider = ({children}) => {
         savesLocations: []
 
     })
+    const [favLocations, setFavLocations] = useState([])
 
 
     useEffect(() => {   
@@ -28,7 +29,13 @@ export const UserProvider = ({children}) => {
 
 
   return (
-    <UserContext.Provider value={{signedUser}}>
+    <UserContext.Provider 
+        value={{signedUser,
+                favLocations,
+                setFavLocations      
+                
+                
+                }}>
         {children}
     </UserContext.Provider>
   )

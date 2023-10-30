@@ -24,6 +24,9 @@ const LogInLinks = () => {
 {/*                 <NavLink to="/locationWeather" className="m-3 nav-link"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Clima X locación</button></NavLink>
  */}                <NavLink to="/signOut" className="m-3 nav-link"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Cerrar Sesión</button></NavLink>
 
+                    {/* <NavLink to="/forecast/:city" className="m-3 nav-link"><button type="button" className="btn btn-outline-dark buttonHover rounded-pill">Pronóstico extendido</button></NavLink> */}
+
+
 {/*                 <NavLink to="/perfil" className="nav-link nav-item">Perfil</NavLink>
                 <NavLink to="/favorites" className="nav-link nav-item"><button id="botonFavoritos" className="botonNavLogin">Mis Favoritos</button></NavLink> */}
 

@@ -8,11 +8,17 @@ import { HomeMap } from "./HomeMap";
 import { OtherInfo } from "./OtherInfo";
 import { DaysCards } from "./DaysCards";
 import { FavLocationsContainer } from "./FavLocations/FavLocationsContainer";
+import { GetFavLocations } from "./FavLocations/helpers/GetFavLocations";
+import { DelFavBtn } from "./FavLocations/Buttons/DelFavBtn";
+import { AddFavBtn } from "./FavLocations/Buttons/AddFavBtn";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebaseConfig/firebase";
+import { Spinner } from "./Spinner/Spinner";
 
 const Home = () => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
     const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${userPosition}&days=1&aqi=no&alerts=no&lang=es`
-    const { signedUser } = useContext(UserContext)
+    const { signedUser, favLocations, setFavLocations } = useContext(UserContext)
     const [corazonState, setCorazonState] = useState(false)
     const [showDays, setShowDays] = useState(false)
     const { data } = useFetch(URL)
@@ -37,6 +43,33 @@ const Home = () => {
         }
     }
 
+    const handleHearts = (city) => {
+
+
+        console.log(city);
+
+
+        let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
+        setCorazonState(tieneValorEspecifico)
+
+
+
+
+        // for (let i = 0; i < favLocations.length; i++) {
+        //   console.log(favLocations[i].cityName);
+        //     if (Object.values(favLocations[i].cityName).includes(city)) {
+
+        //      setCorazonState(true)
+        //      console.log(corazonState); 
+        //      break;
+
+        //       // Romper el ciclo si se encuentra un objeto que cumple con la condición
+        //     }
+        //   }
+
+
+    }
+
     function success(position) {
         var latitud = position.coords.latitude;
         var longitud = position.coords.longitude;
@@ -49,11 +82,6 @@ const Home = () => {
         } else { "No se pudo obtener la ubicacion" }
     }
 
-    useEffect(() => {
-        setTimeout(getPosition, 1000); // Remove the parentheses and quotes
-      }, [userPosition])
-      
-
     const formatLocalTime = (localTime) => {
         const date = new Date(localTime);
         const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -61,7 +89,14 @@ const Home = () => {
         const options = { day: "numeric", month: "long" };
         return `${day}, ${date.toLocaleDateString('es-ES', options)}`;
     };
-     //////////////////////////////////////////////////////////////////////
+
+    const getLocations = async (uid) => {
+        const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
+        // console.log(querySnapshot);
+
+        setFavLocations(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    }
+
     /////////////////////////////////////////////////////////////////////
     
     const [city, setCity] = useState('');
@@ -79,6 +114,7 @@ const Home = () => {
           );
     
           setCurrentWeatherData(response.data);
+          handleHearts(response.data.location.name);
         } catch (e) {
           setError(e);
         } finally {
@@ -86,7 +122,12 @@ const Home = () => {
         }
       }
 
-   
+      useEffect(() => {
+        setTimeout(getPosition, 1000);
+        getLocations(signedUser.uid)
+        //    handleHearts(currentWeatherData ? currentWeatherData.location.name : "")
+
+    }, [])
       useEffect(() => {
       }, [currentWeatherData]);
     
@@ -135,12 +176,25 @@ const Home = () => {
 
                             </div>
 
-                            <div className="corazon_container" onClick={() => setCorazonState(!corazonState)}>
-                                <img src={corazonState ? "./iconos/corazon_fav.png" : "./iconos/corazon.png"} alt="" />
+                            <div >
+                                        <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
                                     </div>
-                                        <div>
-                                           <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
-                                        </div>
+
+                                    <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
+                                        {
+                                            corazonState ?
+                                                <DelFavBtn
+                                                    uid={signedUser.uid}
+                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+
+                                                />
+                                                :
+                                                <AddFavBtn
+                                                    uid={signedUser.uid}
+                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+
+                                                />
+                                        } </div>
                             </div>
                         ) : "No se encontro informacion"}
                        
@@ -213,11 +267,26 @@ const Home = () => {
                                 
                                                 <span>{currentWeatherData.location.localtime}</span>
     
-                                                <div  className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
-                                                    <img src={corazonState ? "./iconos/corazon_fav.png" : "./iconos/corazon.png"} alt="" />
-                                                </div>
+                                                <div >
+                                        <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                                    </div>
+
+                                    <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
+                                        {
+                                            corazonState ?
+                                                <DelFavBtn
+                                                    uid={signedUser.uid}
+                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+
+                                                />
+                                                :
+                                                <AddFavBtn
+                                                    uid={signedUser.uid}
+                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+
+                                                />
+                                        } </div>
                                                 <div>
-                            <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
                         </div>
                             </div>
                         ) : "No se encontro informacion"}
@@ -274,5 +343,6 @@ const Home = () => {
 }
 
 export default Home;
+
 
 

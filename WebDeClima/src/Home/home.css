@@ -20,16 +20,8 @@
     right: -30px;
 }
 
-.corazon_container {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    cursor: pointer;
-}
-.corazon_container >img{
-    width: 25px;
-    
-}
+
+
 
 .days_container {
     
