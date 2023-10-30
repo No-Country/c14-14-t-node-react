@@ -9,6 +9,7 @@ import SignOut from './SignOut';
 /* import LocationWeather from "./LocationWeather/LocationWeather"; */
 import Forecast from "./Forecast";
 
+
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
             <Route path='/signOut' element={<SignOut/>}/>
             {/* <Route path='/locationWeather' element={<LocationWeather/>}/> */}
             <Route path='/forecast/:city' element={<Forecast/>}/>
+      
           </Routes>
         </BrowserRouter>
       </UserProvider>

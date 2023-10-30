@@ -1,5 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth }  from '../firebaseConfig/firebase'
+import {doc,setDoc} from 'firebase/firestore'
+import { db } from "../firebaseConfig/firebase";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -10,6 +12,11 @@ const signInWithGoogle = async(navigate) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
        // console.log({ credential });
        const user = result.user
+
+       setDoc(doc(db, "Clientes", user.uid), {
+        Nombre: user.displayName,
+        Email: user.email
+      })
        
        navigate("/home");
        return {
