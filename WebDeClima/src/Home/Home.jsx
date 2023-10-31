@@ -14,6 +14,7 @@ import { AddFavBtn } from "./FavLocations/Buttons/AddFavBtn";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
 import { Spinner } from "./Spinner/Spinner";
+import { BsSearch } from 'react-icons/bs';
 
 const Home = () => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
@@ -44,17 +45,9 @@ const Home = () => {
     }
 
     const handleHearts = (city) => {
-
-
         console.log(city);
-
-
         let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
         setCorazonState(tieneValorEspecifico)
-
-
-
-
         // for (let i = 0; i < favLocations.length; i++) {
         //   console.log(favLocations[i].cityName);
         //     if (Object.values(favLocations[i].cityName).includes(city)) {
@@ -93,16 +86,15 @@ const Home = () => {
     const getLocations = async (uid) => {
         const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
         // console.log(querySnapshot);
-
         setFavLocations(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
     }
-
     /////////////////////////////////////////////////////////////////////
-    
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const [currentWeatherData, setCurrentWeatherData] = useState(null);
+    const [searchPerformed, setSearchPerformed] = useState(false);
+
 
     async function getCurrentWeatherData() {
         try {
@@ -115,121 +107,93 @@ const Home = () => {
     
           setCurrentWeatherData(response.data);
           handleHearts(response.data.location.name);
+          setSearchPerformed(true); 
         } catch (e) {
           setError(e);
         } finally {
           setLoading(false);
         }
-      }
+    }
 
-      useEffect(() => {
+    useEffect(() => {
         setTimeout(getPosition, 1000);
         getLocations(signedUser.uid)
         //    handleHearts(currentWeatherData ? currentWeatherData.location.name : "")
-
     }, [])
-      useEffect(() => {
-      }, [currentWeatherData]);
+    useEffect(() => {
+    }, [currentWeatherData]);
     
-    
-      return (
-        <>
-        <div className="home_container container-fluid">
-            <div className='text-center mt-5'>
-                <input onChange={(e) => { setCity(e.target.value) }} />
-                <button className='ms-2' onClick={getCurrentWeatherData} variant="primary">Submit</button>{' '}
-                {error ? (
-                    <div className='text-danger'>
-                        Parece que la ciudad no existe...
-                    </div>
-                ) : (
-                    <h3 className='mt-3'> Pronóstico en... {city}</h3>
-                )}
+    return (
+        <div className="home_container container-fluid justify-content-center">
+            <div className='d-flex text-center mt-5 justify-content-center'>
+                <input className="form-control custom-opacity-bg shadow-lg w-50 border-0" placeholder="El clima en..." onChange={(e) => { setCity(e.target.value) }} />
+                <button type="submit" className="btn ms-2 btn-outline-light rounded-pill" onClick={getCurrentWeatherData} variant="primary"><BsSearch/></button>
             </div>
-    
-            {city === '' ? (
-
-        <div className="home_container container-fluid">
-            <h1 className="text-start">Hola {signedUser.displayName}!</h1>
-            <div>
-                 {data !== undefined ? (
-                        <div className="forecast_container">
-
-                            <img src={data.forecast.forecastday[0].day.condition.icon} alt="icon-forecast"
-                                className="icon_forecast"
-                            />
-                            <div className="d-flex justify-content-around w-50">
-                                <h2>{formatLocalTime(data.location.localtime)}</h2>
+            <h2 className="mb-5 mt-3">Hola {signedUser.displayName}!</h2>
+            {!searchPerformed ? (
+                <div className="">
+                    <div>
+                        {data !== undefined ? (
+                            <div className="forecast_container w-25">
+                                <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
+                                <div className="d-flex justify-content-around w-50">
+                                    <h5>{formatLocalTime(data.location.localtime)}</h5>
+                                </div>
+                                <div> 
+                                    <h3>{data.location.name}, {data.location.region}</h3>
+                                </div>
+                                <div>
+                                    <h1>{data.current.temp_c} ºC</h1>
+                                </div>
+                                <p className="m-0 p-0">{data.forecast.forecastday[0].day.condition.text}</p>
+                                <div className="d-flex flex-column m-0 p-0">
+                                    <p className="m-0 p-0">Máxima: {data.forecast.forecastday[0].day.maxtemp_c}ºC Mínima: {data.forecast.forecastday[0].day.mintemp_c}ºC</p>
+                                </div>
+                                <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
+                                    { corazonState ?
+                                        <DelFavBtn
+                                            uid={signedUser.uid}
+                                            cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+                                        />
+                                        :
+                                        <AddFavBtn
+                                            uid={signedUser.uid}
+                                            cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+                                        />
+                                    } 
+                                </div>
                             </div>
-                            <div> 
-                                <h5>{data.location.name}, {data.location.region}</h5>
-                            </div>
-                            <div>
-                                <span style={{ fontSize: "30px" }}>{data.current.temp_c}</span>
-                                <span> ºC</span>
-                            </div>
-                            <span style={{ color: "orange" }}>{data.forecast.forecastday[0].day.condition.text}</span>
-
-                            <div className="d-flex flex-column ">
-                                <span style={{ marginRight: "5px" }}>min:  {data.forecast.forecastday[0].day.mintemp_c} ºC </span>
-                                <span>max: {data.forecast.forecastday[0].day.maxtemp_c} ºC </span>
-
-                            </div>
-
-                            <div >
-                                        <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
-                                    </div>
-
-                                    <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
-                                        {
-                                            corazonState ?
-                                                <DelFavBtn
-                                                    uid={signedUser.uid}
-                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
-
-                                                />
-                                                :
-                                                <AddFavBtn
-                                                    uid={signedUser.uid}
-                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
-
-                                                />
-                                        } </div>
-                            </div>
-                        ) : "No se encontro informacion"}
-                       
+                        ) : "No se encontro informacion"}   
                     </div>
                     <div className="days_arrows_container">
-
-                    <div className="days_container">
-                        <span className={showDays ? "disable_days" : "active_days"} onClick={handleSliders}>Hoy</span>
-                        <span className={showDays ? "active_days" : "disable_days"}  onClick={handleSliders}>10 dias</span>
-
-                    </div>
-
-                    <div className='arrows_container'>
+                        <div className="days_container">
+                            <span className={showDays ? "disable_days" : "active_days"} onClick={handleSliders}>Hoy</span>
+                            <span className={showDays ? "active_days" : "disable_days"}  onClick={handleSliders}>10 dias</span>
+                        </div>
+                        <div className='arrows_container'>
                             <button onClick={handlePrevSlide} className='arrows'><img src="./iconos/left_arrow.png" alt="Deslizar a  la izquierda" /></button>
                             <button onClick={handleNextSlide} className='arrows'><img src="./iconos/right_arrow.png" alt="Deslizar a la derecha" /></button>
-
                         </div>
-                            </div>
-                    {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
-                    <hr />
+                    </div>
+                            {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
+                            <div className="lineHome"></div>
                     <div style={{ marginBottom: "2%" }}>
-                        {
-                            showDays ? 
+                        { showDays ? 
                             <DaysCards
-                            
-                            slide={slide}
+                                city={data.location.name}
+                                slide={slide}
                             />
                             :
 
                             <HoursCards
-                            data={data}
-                            slide={slide}
-                        />
+                                data={data}
+                                slide={slide}
+                            />
                         }
                     </div>
+                   {/*  <div >
+                        <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                    </div> */}
                     <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
                         <HomeMap />
                         <OtherInfo data={data} />
@@ -237,7 +201,6 @@ const Home = () => {
                 </div>
             ) : (
                 <div>
-                    <h1 className="text-start">Hola {signedUser.displayName}!</h1>
                     <div>
                         {loading ? (
                             <div>Cargando...</div>
@@ -245,104 +208,80 @@ const Home = () => {
                             <div>Error: {error.message}</div>
                         ) : currentWeatherData ? (
                             <div className="forecast_container">
-                                 <img src={currentWeatherData.forecast.forecastday[0].day.condition.icon} alt="icon-forecast"
-                                                className="icon_forecast"
-                                                />
-                                                <div className="d-flex justify-content-around w-50">
-                                                    <h2>{formatLocalTime(currentWeatherData.location.localtime)}</h2>
-                                                </div>
-                                                <div> 
-                                                    <h5>{currentWeatherData.location.name}, {currentWeatherData.location.region}</h5>
-                                                </div>
-                                                
-                                                <div>
-                                                    <span style={{fontSize: "30px"}}>{currentWeatherData.current.temp_c}</span>
-                                                    <span> ºC</span>  
-                                                </div>
-                                                <span style={{color: "orange"}}>{currentWeatherData.forecast.forecastday[0].day.condition.text}</span>                       
-                                                <div className="d-flex flex-column ">
-                                                    <span style={{marginRight: "5px"}}>min:  {currentWeatherData.forecast.forecastday[0].day.mintemp_c} ºC </span>
-                                                    <span>max: {currentWeatherData.forecast.forecastday[0].day.maxtemp_c} ºC </span>
-                                                </div>
-                                
-                                                <span>{currentWeatherData.location.localtime}</span>
-    
-                                                <div >
-                                        <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
-                                    </div>
-
-                                    <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
-                                        {
-                                            corazonState ?
-                                                <DelFavBtn
-                                                    uid={signedUser.uid}
-                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
-
-                                                />
-                                                :
-                                                <AddFavBtn
-                                                    uid={signedUser.uid}
-                                                    cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
-
-                                                />
-                                        } </div>
-                                                <div>
-                        </div>
+                                <img src={currentWeatherData.forecast.forecastday[0].day.condition.icon} alt="icon-forecast" className="icon_forecast"/>
+                                <div className="d-flex justify-content-around w-50">
+                                    <h2>{formatLocalTime(currentWeatherData.location.localtime)}</h2>
+                                </div>
+                                <div> 
+                                    <h5>{currentWeatherData.location.name}, {currentWeatherData.location.region}</h5>
+                                </div>                  
+                                <div>
+                                    <span style={{fontSize: "30px"}}>{currentWeatherData.current.temp_c}</span>
+                                    <span> ºC</span>  
+                                </div>
+                                <span style={{color: "orange"}}>{currentWeatherData.forecast.forecastday[0].day.condition.text}</span>                       
+                                <div className="d-flex flex-column ">
+                                    <span style={{marginRight: "5px"}}>min:  {currentWeatherData.forecast.forecastday[0].day.mintemp_c} ºC </span>
+                                    <span>max: {currentWeatherData.forecast.forecastday[0].day.maxtemp_c} ºC </span>
+                                </div>
+                                <span>{currentWeatherData.location.localtime}</span>
+                                <div>
+                                    <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                                </div>
+                                <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
+                                    { corazonState ?
+                                        <DelFavBtn
+                                            uid={signedUser.uid}
+                                            cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+                                        />
+                                        :
+                                        <AddFavBtn
+                                            uid={signedUser.uid}
+                                            cityName={currentWeatherData ? currentWeatherData.location.name : "Posadas"}
+                                        />
+                                    } 
+                                </div>
                             </div>
-                        ) : "No se encontro informacion"}
-                        
+                        ) : "No se encontro informacion"}    
                     </div>
-                    
                     <div className="days_arrows_container">
-
-            <div className="days_container">
-                <span className={showDays ? "disable_days" : "active_days"} onClick={handleSliders}>Hoy</span>
-                <span className={showDays ? "active_days" : "disable_days"}  onClick={handleSliders}>10 dias</span>
-
-            </div>
-
-            <div className='arrows_container'>
-                    <button onClick={handlePrevSlide} className='arrows'><img src="./iconos/left_arrow.png" alt="Deslizar a  la izquierda" /></button>
-                    <button onClick={handleNextSlide} className='arrows'><img src="./iconos/right_arrow.png" alt="Deslizar a la derecha" /></button>
-
-                </div>
+                        <div className="days_container">
+                            <span className={showDays ? "disable_days" : "active_days"} onClick={handleSliders}>Hoy</span>
+                            <span className={showDays ? "active_days" : "disable_days"}  onClick={handleSliders}>10 dias</span>
+                        </div>
+                        <div className='arrows_container'>
+                                <button onClick={handlePrevSlide} className='arrows'><img src="./iconos/left_arrow.png" alt="Deslizar a  la izquierda" /></button>
+                                <button onClick={handleNextSlide} className='arrows'><img src="./iconos/right_arrow.png" alt="Deslizar a la derecha" /></button>
+                        </div>
                     </div>
-            {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
-            <hr />
-            <div style={{ marginBottom: "2%" }}>
-                {
-                    showDays ? 
-                    <DaysCards
-                    city={city}
-                    slide={slide}
-                    />
-                    :
-
-                    <HoursCards
-                    data={currentWeatherData}
-                    slide={slide}
-                />
-                }
-            </div>
-            <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
-                <HomeMap />
-                <OtherInfo data={currentWeatherData} />
-            </div>
-                </div>
-                
+                    {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
+                    <hr />
+                    <div style={{ marginBottom: "2%" }}>
+                        { showDays ? 
+                            <DaysCards
+                                city={currentWeatherData ? currentWeatherData.location.name: "Buenos Aires"}
+                                slide={slide}
+                            />
+                            :
+                            <HoursCards
+                                data={currentWeatherData}
+                                slide={slide}
+                            />
+                        }
+                    </div>
+                    <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
+                        <HomeMap />
+                        <OtherInfo data={currentWeatherData} />
+                    </div>
+                </div>          
             )}
-                    
-            </div>
-            
-                <hr />
-                <div>
-                    <FavLocationsContainer/>
-                </div>
-        </>
+            <hr />
+            <div>
+                <FavLocationsContainer/>
+            </div>    
+        </div>     
     );
 }
 
 export default Home;
-
-
 
