@@ -26,19 +26,23 @@ export const FavLocationsContainer = () => {
 
 
 
-const getLocation = async(uid) =>  {
- const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
-  // console.log(querySnapshot);
+  const getLocation = async(uid) =>  {
+    const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
+     // console.log(querySnapshot);
            
-             setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
-          
+                setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
+           //    console.log(favLocations);
+             
+              
+              }
 
-}
 
 useEffect(() => {
-setTimeout(getLocation(uid),"2000")
+  
+getLocation(uid)
 
-}, [])
+
+}, [uid])
 
 
   // const arrCitys = ["Cordoba", "Rosario", "Buenos Aires", "Posadas", "Resistencia"]

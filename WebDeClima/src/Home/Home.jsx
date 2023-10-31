@@ -14,6 +14,8 @@ import { AddFavBtn } from "./FavLocations/Buttons/AddFavBtn";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
 import { Spinner } from "./Spinner/Spinner";
+import { BsSearch } from 'react-icons/bs';
+import { HomeMap } from "./HomeMap";
 
 const Home = () => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
@@ -24,6 +26,10 @@ const Home = () => {
     const { data } = useFetch(URL)
     const [slide, setSlide] = useState(0)
     const [slider, setSlider] = useState(7)
+    const [latLong, setLatLong] = useState({
+        lat: "-24.52713",
+        long: "-43.59375;2"
+    })
 
     const handleNextSlide = () => {
         setSlide((slide) => slide === slider ? slide = 0 : slide + 1)
@@ -43,24 +49,21 @@ const Home = () => {
         }
     }
 
-    const handleHearts = (city) => {
-        console.log(city);
-        let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
-        setCorazonState(tieneValorEspecifico)
-       
 
-
-    }
 
     function success(position) {
         var latitud = position.coords.latitude;
         var longitud = position.coords.longitude;
+        // setLatLong({
+        //     lat: latitud,
+        //     long: longitud        })
         setUserPosition(`${latitud},${longitud}`)
+        console.log(position);
     }
     function getPosition() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success)
-            // console.log("ubicacion obtenida");
+        //     console.log("ubicacion obtenida");
         } else { "No se pudo obtener la ubicacion" }
     }
 
@@ -77,13 +80,26 @@ const Home = () => {
         // console.log(querySnapshot);
         setFavLocations(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
     }
+    
+    const handleHearts = (city) => {
+    
+   
+
+           let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
+           setCorazonState(tieneValorEspecifico)
+           console.log(corazonState,city);
+           
+
+
+    }
 
     /////////////////////////////////////////////////////////////////////
-    
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const [currentWeatherData, setCurrentWeatherData] = useState(null);
+    const [searchPerformed, setSearchPerformed] = useState(false);
+
 
     async function getCurrentWeatherData() {
         try {
@@ -97,60 +113,58 @@ const Home = () => {
           setCurrentWeatherData(response.data);
           console.log(currentWeatherData);
           handleHearts(response.data.location.name);
+          console.log(response.data.location.name);
+          setSearchPerformed(true); 
         } catch (e) {
           setError(e);
+         
         } finally {
           setLoading(false);
         }
-      }
+    }
+   
 
-      useEffect(() => {
-        setTimeout(getPosition, 1000);
-        getLocations(signedUser.uid)
-        //    handleHearts(currentWeatherData ? currentWeatherData.location.name : "")
+    useEffect(() => {
+        //  getPosition()
+      
+        handleHearts(data ? data.location.name : "")
+     
+     }, [favLocations]);
 
-    }, [])
-      useEffect(() => {
-      }, [currentWeatherData]);
+     useEffect(() => {
     
+   getPosition()
+
+
+    }, [currentWeatherData])
+ 
+
     
     return (
-        <div className="home_container container-fluid">
-            <div className='text-center mt-5'>
-                <input onChange={(e) => { setCity(e.target.value) }} />
-                <button className='btn ms-2' onClick={getCurrentWeatherData} variant="primary">Buscar</button>
-                {error ? (
-                    <div className='text-danger'>
-                        Parece que la ciudad no existe...
-                    </div>
-                ) : (
-                    <h3 className='mt-3'> Pronóstico en... {city}</h3>
-                )}
+        <div className="home_container container-fluid justify-content-center">
+            <div className='d-flex text-center mt-5 justify-content-center'>
+                <input className="form-control custom-opacity-bg shadow-lg w-50 border-0" placeholder="El clima en..." onChange={(e) => { setCity(e.target.value) }} />
+                <button type="submit" className="btn ms-2 btn-outline-light rounded-pill" onClick={getCurrentWeatherData} variant="primary"><BsSearch/></button>
             </div>
-            <h1 className="text-start">Hola {signedUser.displayName}!</h1>
-            {city === '' ? (
+            <h2 className="mb-5 mt-3">Hola {signedUser.displayName}!</h2>
+            {!searchPerformed ? (
                 <div className="">
                     <div>
                         {data !== undefined ? (
-                            <div className="forecast_container">
-                                <img src={data.forecast.forecastday[0].day.condition.icon} alt="icon-forecast" className="icon_forecast"/>
+                            <div className="forecast_container w-25">
+                                <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
                                 <div className="d-flex justify-content-around w-50">
-                                    <h2>{formatLocalTime(data.location.localtime)}</h2>
+                                    <h5>{formatLocalTime(data.location.localtime)}</h5>
                                 </div>
                                 <div> 
-                                    <h5>{data.location.name}, {data.location.region}</h5>
+                                    <h3>{data.location.name}, {data.location.region}</h3>
                                 </div>
                                 <div>
-                                    <span style={{ fontSize: "30px" }}>{data.current.temp_c}</span>
-                                    <span> ºC</span>
+                                    <h1>{data.current.temp_c} ºC</h1>
                                 </div>
-                                <span style={{ color: "orange" }}>{data.forecast.forecastday[0].day.condition.text}</span>
-                                <div className="d-flex flex-column ">
-                                    <span style={{ marginRight: "5px" }}>min:  {data.forecast.forecastday[0].day.mintemp_c} ºC </span>
-                                    <span>max: {data.forecast.forecastday[0].day.maxtemp_c} ºC </span>
-                                </div>
-                                <div >
-                                    <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                                <p className="m-0 p-0">{data.forecast.forecastday[0].day.condition.text}</p>
+                                <div className="d-flex flex-column m-0 p-0">
+                                    <p className="m-0 p-0">Máxima: {data.forecast.forecastday[0].day.maxtemp_c}ºC Mínima: {data.forecast.forecastday[0].day.mintemp_c}ºC</p>
                                 </div>
                                 <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
                                     { corazonState ?
@@ -179,7 +193,7 @@ const Home = () => {
                         </div>
                     </div>
                             {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
-                    <hr />
+                            <div className="lineHome"></div>
                     <div style={{ marginBottom: "2%" }}>
                         { showDays ? 
                             <DaysCards
@@ -194,8 +208,11 @@ const Home = () => {
                             />
                         }
                     </div>
+                   {/*  <div >
+                        <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                    </div> */}
                     <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
-                        {/* <HomeMap /> */}
+                         <HomeMap position={latLong}/> 
                         <OtherInfo data={data} />
                     </div>
                 </div>
@@ -278,10 +295,11 @@ const Home = () => {
             )}
             <hr />
             <div>
-                <FavLocationsContainer/>
+                <FavLocationsContainer data={currentWeatherData || data}/>
             </div>    
         </div>     
     );
 }
 
 export default Home;
+

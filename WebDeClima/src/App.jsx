@@ -13,20 +13,20 @@ import Forecast from "./Forecast";
 function App() {
   return (
     <>
-     <div id="App" className="container-fluid align-items-center">
+     <div id="App" className="container AppContainer d-flex ">
       <UserProvider>
         <BrowserRouter>
-          <NavBar />
-        <hr />
+        <nav className=""><NavBar /></nav>
+        <div className="w-100">
           <Routes>
             <Route path='/' element={<Registration/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
             {/* <Route path='/locationWeather' element={<LocationWeather/>}/> */}
-            <Route path='/forecast/:city' element={<Forecast/>}/>
-      
+           
           </Routes>
+          </div>
         </BrowserRouter>
       </UserProvider>
      </div>

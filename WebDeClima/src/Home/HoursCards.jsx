@@ -1,15 +1,6 @@
-
+import { Spinner } from "./Spinner/Spinner";
 
 export const HoursCards = ({data,slide}) => {
-  // new Date().getHours()
-  
-
-
-
-    // const sliceString = () => {
-
-    // }
-  
     return (
       <div className='hoursCards_container container'>
         <div style={{ transform: `translateX(-${slide * 10}%)`, display: "flex", gap: "10px" }}>
@@ -25,7 +16,7 @@ export const HoursCards = ({data,slide}) => {
               </div>
             ))
           ) : (
-            ""
+            <Spinner/>
           )}
         </div>
       </div>
