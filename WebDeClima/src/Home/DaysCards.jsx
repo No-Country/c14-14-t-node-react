@@ -1,6 +1,7 @@
 import  { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/userContext'
 import { useFetch } from '../Hooks/useFetch'
+import { Spinner } from './Spinner/Spinner'
 
 export const DaysCards = ({slide, city}) => {
     // http://api.weatherapi.com/v1/forecast.json?key=<YOUR_API_KEY>&q=07112&days=7
@@ -18,12 +19,12 @@ export const DaysCards = ({slide, city}) => {
       } else { "No se pudo obtener la ubicacion" }
   }
 
-    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${userPosition || city}&days=10&aqi=no&alerts=no`
+    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${city || userPosition}&days=10&aqi=no&alerts=no`
 
     const {data} = useFetch(URL)
-    console.log(data);
-    console.log("USERPOSITION");
-    console.log(userPosition);
+    // console.log(data);
+    // console.log("USERPOSITION");
+    // console.log(userPosition);
 
 
     const nameDay = (param)=> {
@@ -36,7 +37,7 @@ export const DaysCards = ({slide, city}) => {
     }
   
   return (
-    <div className='hoursCards_container container' >
+    <div className={(data !== undefined) ? 'hoursCards_container container' : "centrar_spiner"} >
 {  
   <div  style={{ transform: `translateX(-${slide * 10}%`, display: "flex", gap: "10px" }}  >
       {
@@ -55,7 +56,7 @@ export const DaysCards = ({slide, city}) => {
                 
             </div>
             ))
-                : ""
+                : <Spinner/>
         }  
       
     </div>}

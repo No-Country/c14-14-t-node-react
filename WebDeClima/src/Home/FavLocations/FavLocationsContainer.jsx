@@ -49,7 +49,7 @@ setTimeout(getLocation(uid),"2000")
   return (
     <div className='fav_locations_container'>
       <div style={{display: "flex", justifyContent: "space-around", marginBottom: "10px", width: "60%"}}>
-        <h5>Mis direcciones frecuentes</h5>
+        <h5 style={{color: "#625B71"}}>Mis direcciones frecuentes</h5>
         
 
         <GetFavLocations uid={uid}/>
