@@ -23,19 +23,22 @@ export const FavLocationsContainer = () => {
       setSlide((slide) => slide === 0 ? slide = 6 : slide - 1)
   }
 
-const getLocation = async(uid) =>  {
- const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
-  // console.log(querySnapshot);
-           
-             setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
-          
+  const getLocation = async(uid) =>  {
+    const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
+     // console.log(querySnapshot);
+                setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
+           //    console.log(favLocations);
+             
+              
+              }
 
-}
 
 useEffect(() => {
-setTimeout(getLocation(uid),"2000")
+  
+getLocation(uid)
 
-}, [])
+
+}, [uid])
 
 
   // const arrCitys = ["Cordoba", "Rosario", "Buenos Aires", "Posadas", "Resistencia"]
@@ -46,7 +49,7 @@ setTimeout(getLocation(uid),"2000")
   return (
     <div className='fav_locations_container'>
       <div style={{display: "flex", justifyContent: "space-around", marginBottom: "10px", width: "60%"}}>
-        <h5>Mis direcciones frecuentes</h5>
+        <h5 style={{color: "#625B71"}}>Mis direcciones frecuentes</h5>
         
 
         <GetFavLocations uid={uid}/>

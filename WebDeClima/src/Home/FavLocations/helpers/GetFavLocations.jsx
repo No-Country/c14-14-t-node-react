@@ -1,6 +1,6 @@
 import { collection, doc, getDocs } from "firebase/firestore";
 import { db } from "../../../firebaseConfig/firebase";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../../context/userContext";
 
 
@@ -10,11 +10,16 @@ export const GetFavLocations = ({uid}) => {
  const getLocation = async(uid) =>  {
   const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
    // console.log(querySnapshot);
-            
+         
               setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
-                
+             
             }
            
+          //  useEffect(() => {
+             
+           
+          // getLocation(uid)
+          //  }, [])
            
 
   return (

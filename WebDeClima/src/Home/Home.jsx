@@ -4,7 +4,7 @@ import { UserContext } from "../context/userContext";
 import { useFetch } from "../Hooks/useFetch";
 import { HoursCards } from "./HoursCards";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { HomeMap } from "./HomeMap";
+
 import { OtherInfo } from "./OtherInfo";
 import { DaysCards } from "./DaysCards";
 import { FavLocationsContainer } from "./FavLocations/FavLocationsContainer";
@@ -15,6 +15,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
 import { Spinner } from "./Spinner/Spinner";
 import { BsSearch } from 'react-icons/bs';
+import { HomeMap } from "./HomeMap";
 
 const Home = () => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
@@ -48,34 +49,21 @@ const Home = () => {
         }
     }
 
-    const handleHearts = (city) => {
-        console.log(city);
-        let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
-        setCorazonState(tieneValorEspecifico)
-        // for (let i = 0; i < favLocations.length; i++) {
-        //   console.log(favLocations[i].cityName);
-        //     if (Object.values(favLocations[i].cityName).includes(city)) {
 
-        //      setCorazonState(true)
-        //      console.log(corazonState); 
-        //      break;
-
-        //       // Romper el ciclo si se encuentra un objeto que cumple con la condición
-        //     }
-        //   }
-
-
-    }
 
     function success(position) {
         var latitud = position.coords.latitude;
         var longitud = position.coords.longitude;
+        // setLatLong({
+        //     lat: latitud,
+        //     long: longitud        })
         setUserPosition(`${latitud},${longitud}`)
+        console.log(position);
     }
     function getPosition() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success)
-            console.log("ubicacion obtenida");
+        //     console.log("ubicacion obtenida");
         } else { "No se pudo obtener la ubicacion" }
     }
 
@@ -92,6 +80,19 @@ const Home = () => {
         // console.log(querySnapshot);
         setFavLocations(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
     }
+    
+    const handleHearts = (city) => {
+    
+   
+
+           let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
+           setCorazonState(tieneValorEspecifico)
+           console.log(corazonState,city);
+           
+
+
+    }
+
     /////////////////////////////////////////////////////////////////////
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false);
@@ -110,22 +111,34 @@ const Home = () => {
           );
     
           setCurrentWeatherData(response.data);
+          console.log(currentWeatherData);
           handleHearts(response.data.location.name);
+          console.log(response.data.location.name);
           setSearchPerformed(true); 
         } catch (e) {
           setError(e);
+         
         } finally {
           setLoading(false);
         }
     }
+   
 
     useEffect(() => {
-        setTimeout(getPosition, 1000);
-        getLocations(signedUser.uid)
-        //    handleHearts(currentWeatherData ? currentWeatherData.location.name : "")
-    }, [])
-    useEffect(() => {
-    }, [currentWeatherData]);
+        //  getPosition()
+      
+        handleHearts(data ? data.location.name : "")
+     
+     }, [favLocations]);
+
+     useEffect(() => {
+    
+   getPosition()
+
+
+    }, [currentWeatherData])
+ 
+
     
     return (
         <div className="home_container container-fluid justify-content-center m-0 p-0">
@@ -203,7 +216,7 @@ const Home = () => {
                             )}
                     </div>
                     <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
-                        <HomeMap />
+                         <HomeMap position={latLong}/> 
                         <OtherInfo data={data} />
                     </div>
                 </div>
@@ -211,7 +224,8 @@ const Home = () => {
                 <div>
                     <div>
                         {loading ? (
-                            <div>Cargando...</div>
+                            // <div>Cargando...</div>
+                            <Spinner/>
                         ) : error ? (
                             <div>Error: {error.message}</div>
                         ) : currentWeatherData ? (
@@ -289,7 +303,7 @@ const Home = () => {
                 </div>          
             )}
             <div>
-                <FavLocationsContainer/>
+                <FavLocationsContainer data={currentWeatherData || data}/>
             </div>    
         </div>     
     );

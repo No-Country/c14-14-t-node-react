@@ -6,6 +6,8 @@
     border-left-color: #09f;
     animation: spin 1s linear infinite;
     margin: auto;
+
+    
   }
   @keyframes spin {
     0% {

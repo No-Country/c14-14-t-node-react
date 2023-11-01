@@ -7,6 +7,7 @@
 
     overflow: hidden;
     
+    
   
 }
  .fav_locations {
@@ -16,27 +17,39 @@
  
     margin-top: 10px; 
     width: 80%;
+  
    
    
     
-    
+ 
    
 } 
 
  .favLocations_item {
+  /*  background-image: url("/public/iconos/textura_grano_fino.png"); */
+    /* background-color: rgba(120,120,120,0.2);  */
+       background-color: rgba(255,255,255,0.1); 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 180px;
+    align-items: center; 
+    justify-content: center;
+    height: 190px;
     width: 140px;
     padding: 10px;
     
-    background-color: rgba(255,255,255,0.2);
     border-radius: 10px;
-} 
-.favLocations_item > img {
-    width: 80px;
+
+    
 }
+.favLocations_item:hover {
+    /* background-image: url("/public/iconos/textura_grano_fino.png"); */
+    background-color:rgba(39,56,89,0.2);
+
+   
+
+} 
+
+
 .corazon_container {
     position: absolute;
     bottom: 12px;
