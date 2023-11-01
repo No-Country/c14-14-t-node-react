@@ -1,5 +1,231 @@
-.forecast_container {
-   
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 280px) { 
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        min-width: 250px;
+        height: 300px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .icon_forecast {
+        width: 100px;
+        position: absolute;
+        top: -30px;
+        right: -20px;
+    }
+    .titleName {
+        font-size: medium;
+    }
+    .searchDiv {
+        margin-top: 50px;
+    }
+    .lineHome {
+        width: 30%;
+        /* height: 1px; */
+        border-top: 2px solid black;
+        margin: 20px auto;
+    }
+    .days_container {
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+        margin: auto; 
+    }
+    .active_days{
+        background-color:rgba(100,100,100,0.6);
+        border-radius: 30px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+        height: 48px;
+        cursor: pointer;
+        font-weight: 200;
+    }
+    .disable_days {
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 30px;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+        height: 48px;
+        cursor: pointer;
+        font-weight: 200;
+    }
+    .hoursCards_container {
+        display: flex;
+        margin: auto;
+        overflow: hidden;
+        gap: 10px;
+        width: 75%;  
+    }
+    .hoursCard_item { 
+        background-color: rgba(255,255,255,0.2);
+        padding: 15px;
+        border-radius: 10px;
+        height: 150px; 
+    }
+    .other_info_container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 10px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    .other_info_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        width: 150px;
+        height: 120px;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .other_info_item > img {
+        width: 40px;  
+    }
+    .days_arrows_container {
+        position: relative;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+    }
+    .arrows_container {
+        position: absolute;
+        right: 15%;
+        width: 10vw;
+        display: flex;
+        justify-content: space-between;
+        z-index: 200;
+    }
+    .arrows {
+        background: none;
+        border: none;
+    }
+    .arrows > img{
+        width: 20px;
+    }
+ }
+
+ @media (min-width: 400px) {
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        min-width: 350px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .icon_forecast {
+        width: 150px;
+        position: absolute;
+        top: -50px;
+        right: -40px;
+    }
+    .titleName {
+        font-size: larger;
+    }
+ }
+
+ @media (min-width: 576px) {
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        min-width: 400px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .icon_forecast {
+        width: 200px;
+        position: absolute;
+        top: -70px;
+        right: -40px;
+    }
+    .searchDiv {
+        margin-top: 0px;
+    }
+    
+ }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        min-width: 500px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .icon_forecast {
+        width: 200px;
+        position: absolute;
+        top: -60px;
+        right: -70px;
+    }
+    
+    .titleName {
+        font-size: 45px;
+    }
+
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .icon_forecast {
+        width: 200px;
+        position: absolute;
+        top: -70px;
+        right: -70px;
+    }
+ }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1500px) { 
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        height: 300px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
+    .icon_forecast {
+        width: 200px;
+        position: absolute;
+        top: -70px;
+        right: -70px;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -395,5 +621,4 @@ z-index: 200;
         top: -70px;
         right: -70px;
     }
-   
 };

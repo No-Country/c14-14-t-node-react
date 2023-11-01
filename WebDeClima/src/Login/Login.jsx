@@ -1,4 +1,5 @@
 import  SignInWithGoogle from "./SignInWithGoogle";
+import { NavLink } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from 'react-icons/bs'
@@ -38,6 +39,22 @@ const Login = () => {
     }
 
     return (
+        <>
+        <div>
+            <div className="nav-links d-flex justify-content-center">
+                <NavLink to="/login" className="m-3 nav-link">
+                <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
+                    Iniciar Sesión
+                </button>
+                </NavLink>
+                <NavLink to="/" className="m-3 nav-link">
+                <button type="button" className="btn btn-outline-secondary buttonHover rounded-pill registrationButton">
+                    Registrarme
+                </button>
+                </NavLink>
+            </div>
+        </div>
+       
         <div className="container-fluid loginContainer mt-3">
             <h3 className="title pb-4">Iniciar Sesión</h3>
             <div className="row registrationLogin mb-3">
@@ -101,6 +118,7 @@ const Login = () => {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

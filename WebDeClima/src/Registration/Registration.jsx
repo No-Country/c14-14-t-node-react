@@ -1,5 +1,6 @@
 import "./Registration.css";
 import SignInWithGoogle  from "../Login/SignInWithGoogle";
+import { NavLink } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebaseConfig/firebase.js';
 import {useNavigate} from "react-router-dom";
@@ -125,6 +126,21 @@ const Registration = () => {
 
     return (
         <>
+        <div>
+            <div className="nav-links d-flex justify-content-center">
+                <NavLink to="/login" className="m-3 nav-link">
+                <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
+                    Iniciar Sesión
+                </button>
+                </NavLink>
+                <NavLink to="/" className="m-3 nav-link">
+                <button type="button" className="btn btn-outline-secondary buttonHover rounded-pill registrationButton">
+                    Registrarme
+                </button>
+                </NavLink>
+            </div>
+        </div>
+
         <div className="container-fluid registrationContainer mt-3">
                 <h2 className="title pb-4">Registrarme</h2>
 
