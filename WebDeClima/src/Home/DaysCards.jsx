@@ -53,15 +53,8 @@ export const DaysCards = ({city, slide}) => {
                         )
                     ): <Spinner/>
                 }  
-        
-
             </div>
-            ))
-                : <Spinner/>
         }  
-      
-    </div>}
-   
     </div>
   )
 }
