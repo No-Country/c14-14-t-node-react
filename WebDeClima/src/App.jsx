@@ -22,7 +22,8 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
-            <Route path='/forecast/:city' element={<Forecast/>}/>
+            <Route path='/forecast' element={<Forecast/>}/>
+            {/* <Route path='/forecast/:city' element={<Forecast/>}/> */}
           </Routes>
           </div>
         </BrowserRouter>

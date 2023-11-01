@@ -4,10 +4,10 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 45%;
+        width: 90%;
         min-width: 250px;
         height: 300px;
-        margin: auto;
+        margin-left: auto;
         border-radius: 10px;
         position: relative;
         background-color: rgba(255,255,255,0.2);
@@ -23,6 +23,17 @@
     }
     .searchDiv {
         margin-top: 50px;
+    }
+    .forecastCards{
+        margin: 10px;
+    }
+    .forecastContainer {
+        background-color: rgba(255, 255, 255, 0);
+        border: none;
+        padding: 0px;
+    }
+    .collapseForecast{
+        width: 87%;
     }
     .lineHome {
         width: 30%;
@@ -127,7 +138,7 @@
         justify-content: center;
         height: 350px;
         min-width: 350px;
-        margin: auto;
+        margin-left: auto;
         border-radius: 10px;
         position: relative;
         background-color: rgba(255,255,255,0.2);
@@ -141,6 +152,10 @@
     .titleName {
         font-size: larger;
     }
+    .collapseForecast{
+        width: 90%;
+    }
+    
  }
 
  @media (min-width: 576px) {
@@ -151,7 +166,7 @@
         justify-content: center;
         height: 350px;
         min-width: 400px;
-        margin: auto;
+        margin-left: auto;
         border-radius: 10px;
         position: relative;
         background-color: rgba(255,255,255,0.2);
@@ -165,6 +180,9 @@
     .searchDiv {
         margin-top: 0px;
     }
+    .collapseForecast{
+        width: 90%;
+    }
     
  }
 
@@ -176,7 +194,7 @@
         justify-content: center;
         height: 350px;
         min-width: 500px;
-        margin: auto;
+        margin-left: auto;
         border-radius: 10px;
         position: relative;
         background-color: rgba(255,255,255,0.2);
@@ -191,15 +209,36 @@
     .titleName {
         font-size: 45px;
     }
+    
+    .collapseForecast{
+        width: 95%;
+    }
 
  }
 
 @media (min-width: 992px) {
+    .forecast_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        min-width: 500px;
+        max-width: 600px;
+        margin: auto;
+        border-radius: 10px;
+        position: relative;
+        background-color: rgba(255,255,255,0.2);
+    }
     .icon_forecast {
         width: 200px;
         position: absolute;
         top: -70px;
         right: -70px;
+    }
+    
+    .collapseForecast{
+        width: 100%;
     }
  }
 
@@ -222,15 +261,8 @@
         top: -70px;
         right: -70px;
     }
-   /*  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 45%;
-    height: 250px;
-    margin: auto;
-    border-radius: 10px;
-    position: relative;
-    background-color: rgba(255,255,255,0.2);*/
     
+    .collapseForecast{
+        width: 100%;
+    }
 } 

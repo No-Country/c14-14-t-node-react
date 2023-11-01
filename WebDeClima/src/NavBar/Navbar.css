@@ -9,14 +9,12 @@
 @media (min-width: 250px) and (max-width: 576px) {
     .nav-links {
         display: flex;
-        flex-direction: row; /* Alinea los elementos en una fila */
+        flex-direction: row;
       }
     .navLinks {
         justify-content: center;
+        align-items: center;
+        align-content: center;
+        align-self: center;    
     }
-    
   }
-  
-
-  
-  

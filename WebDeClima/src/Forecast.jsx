@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import "./Forecast.css"
 
-const Forecast = () => {
+const Forecast =  ({ city }) => {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [selectedDate, setSelectedDate] = useState(null);
-
-  const { city } = useParams();
+  const [lat, setLat] = useState(null);
+  const [long, setLong] = useState(null);
 
   const unitTypeSymbol = {
     imperial: '°F',
@@ -18,22 +18,21 @@ const Forecast = () => {
 
   const unitType = 'metric';
 
-  async function getWeatherData() {
+  async function getLatLong() {
     try {
       setError();
       setLoading(true);
 
-      // get longitude and latitude based on the city that the user inputs
-      let resp = await axios.get(
+      const response = await axios.get(
         `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=67646a4c3b21882f4ac4ce62b72cd535&lang=es`
       );
-      const lat = resp.data[0].lat;
-      const long = resp.data[0].lon;
 
-      // set your API key here
+      const lat = response.data[0].lat;
+      const long = response.data[0].lon;
+      setLat(lat);
+      setLong(long);
+
       const apiKey = '67646a4c3b21882f4ac4ce62b72cd535';
-
-      // Make weather API call using axios
       const weatherData = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unitType}&lang=es`
       );
@@ -48,14 +47,13 @@ const Forecast = () => {
   }
 
   useEffect(() => {
-    getWeatherData();
-  }, []);
+    getLatLong();
+  }, [city]);
 
-  // Function to group weather data by day
   const groupWeatherDataByDay = (data) => {
     const groupedData = {};
     data.forEach((item) => {
-      const date = item.dt_txt.split(' ')[0]; // Extract the date part
+      const date = item.dt_txt.split(' ')[0];
       if (!groupedData[date]) {
         groupedData[date] = [];
       }
@@ -75,17 +73,17 @@ const Forecast = () => {
           <div>Cargando...</div>
         </div>
       ) : (
-        <div className="container">
+        <div className="container forecast-container">
           {Object.entries(groupWeatherDataByDay(weatherData)).map(
             ([date, dayData]) => (
               <div key={date} className="mt-3">
-                <div className="card p-3 shadow border-0 mt-3 rounded" style={{ background: 'transparent' }}>
-                  <div className="d-flex" style={{ width: '100%' }}>
-                    <div style={{ width: '30%' }}>
+                <div className="card forecastCard p-3 shadow border-0 mt-3 rounded" style={{ background: 'transparent' }}>
+                  <div className="d-flex cardContainer" style={{ width: '100%' }}>
+                    <div style={{ width: '100%' }}>
                       <h3>{new Date(date).toLocaleDateString('es-ES', { weekday: 'long' })}</h3>
                       <p>{new Date(date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}</p>
                     </div>
-                    <div style={{ width: '70%' }}>
+                    <div style={{ width: '100%' }}>
                       <div id={`carousel-${date}`} className="carousel slide" data-bs-ride="carousel">
                         <div className="carousel-inner">
                           {dayData.map((item, index) => (
@@ -93,7 +91,7 @@ const Forecast = () => {
                               key={index}
                               className={`carousel-item ${index === 0 ? 'active' : ''}`}
                             >
-                              <div className="d-flex justify-content-around" style={{ width: '100%' }}>
+                              <div className="d-flex justify-content-center infoContainer" style={{ width: '100%' }}>
                                 <div style={{ width: '30%' }}>
                                   <div>{item.dt_txt.split(' ')[1]}</div>
                                   <div>
@@ -109,7 +107,7 @@ const Forecast = () => {
                                     Presión: {item.main.pressure} Pa
                                   </div>
                                 </div>
-                                <div style={{ width: '30%' }} className="text-center">
+                                <div className="text-center">
                                   <img
                                     src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                                     alt="Weather Icon"

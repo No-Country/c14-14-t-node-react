@@ -7,7 +7,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../firebaseConfig/firebase'
 import { GetFavLocations } from './helpers/GetFavLocations'
 
-export const FavLocationsContainer = () => {
+export const FavLocationsContainer = ({data, onCardClick}) => {
   const {signedUser,favLocations,setFavLocations} = useContext(UserContext)
   const [slide, setSlide] = useState(0)
   
@@ -71,7 +71,7 @@ getLocation(uid)
           {
            favLocations && favLocations.map(element => (
               
-              <FavLocationItems city={element.cityName} key={element.id} uid={uid}/>
+              <FavLocationItems onCardClick= {onCardClick} city={element.cityName} key={element.id} uid={uid}/>
             ))
           }
             

@@ -36,9 +36,8 @@ body {
     color: red;
 }
 
-/* Media Query para pantallas más pequeñas que 500px */
 @media (max-width: 440px) {
     html {
-        background-size: cover; /* Ajusta la imagen de fondo para cubrir toda la pantalla */
+        background-size: cover; 
     }
 }
