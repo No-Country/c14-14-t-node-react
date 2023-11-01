@@ -52,14 +52,14 @@ getLocation(uid)
 
   return (
     <div className='fav_locations_container'>
-      <div style={{display: "flex", justifyContent: "space-around", marginBottom: "10px", width: "60%"}}>
+      <div className="arrows_h5_container" >
         <h5 style={{color: "#625B71"}}>Mis direcciones frecuentes</h5>
         
 
         <GetFavLocations uid={uid}/>
         
         
-        <div className='arrows_container'> 
+        <div className='arrows_container_2'> 
           <button className='arrows' onClick={()=>handlePrevSlide()}><img src="./iconos/left_arrow.png" alt="Deslizar a  la izquierda" /></button>
           <button className='arrows' onClick={()=>handleNextSlide()}><img src="./iconos/right_arrow.png" alt="Deslizar a  la derecha" /></button>
         </div>

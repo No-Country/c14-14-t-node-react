@@ -2,7 +2,7 @@ import React from 'react';
 
 export const OtherInfo = ({ data }) => {
   return (
-    <div style={{ width: "60%", marginTop: "15px" }}>
+    <div >
       {data && data.forecast && data.forecast.forecastday && data.forecast.forecastday[0] && data.forecast.forecastday[0].astro ? (
         <div className='other_info_container'>
           <div className='other_info_item'>

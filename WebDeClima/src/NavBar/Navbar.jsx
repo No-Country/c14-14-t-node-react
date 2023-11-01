@@ -14,7 +14,7 @@ const LogInLinks = () => {
 
   if (!isUserLoggedIn) {
     return (
-      <div className="nav-links">
+      <div className="nav-links ">
         <NavLink to="/login" className="m-3 nav-link">
           <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
             Iniciar Sesión
@@ -66,7 +66,7 @@ const LogInLinks = () => {
 
 const NavBar = () => {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid nav_container">
       <div className="row">
         <div className="d-flex">
           <LogInLinks></LogInLinks>

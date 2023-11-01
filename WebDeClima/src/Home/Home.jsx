@@ -16,6 +16,7 @@ import { db } from "../firebaseConfig/firebase";
 import { Spinner } from "./Spinner/Spinner";
 import { BsSearch } from 'react-icons/bs';
 import { HomeMap } from "./HomeMap";
+import { UpdatePosition } from "./FavLocations/Buttons/UpdatePosition";
 
 const Home = () => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
@@ -125,7 +126,7 @@ const Home = () => {
    
 
     useEffect(() => {
-        //  getPosition()
+        
       
         handleHearts(data ? data.location.name : "")
      
@@ -133,7 +134,7 @@ const Home = () => {
 
      useEffect(() => {
     
-   getPosition()
+    getPosition()
 
 
     }, [currentWeatherData])
@@ -153,6 +154,7 @@ const Home = () => {
                         {data !== undefined ? (
                             <div className="forecast_container w-25">
                                 <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
+                                <UpdatePosition setUserPosition={setUserPosition}/>
                                 <div className="d-flex justify-content-around w-50">
                                     <h5>{formatLocalTime(data.location.localtime)}</h5>
                                 </div>
@@ -165,6 +167,9 @@ const Home = () => {
                                 <p className="m-0 p-0">{data.forecast.forecastday[0].day.condition.text}</p>
                                 <div className="d-flex flex-column m-0 p-0">
                                     <p className="m-0 p-0">Máxima: {data.forecast.forecastday[0].day.maxtemp_c}ºC Mínima: {data.forecast.forecastday[0].day.mintemp_c}ºC</p>
+                                </div>
+                                <div>
+                                <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
                                 </div>
                                 <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
                                     { corazonState ?
@@ -211,7 +216,7 @@ const Home = () => {
                    {/*  <div >
                         <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
                     </div> */}
-                    <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
+                    <div className="section_map_other">
                          <HomeMap position={latLong}/> 
                         <OtherInfo data={data} />
                     </div>
@@ -287,9 +292,9 @@ const Home = () => {
                             />
                         }
                     </div>
-                    <div className="container" style={{ display: "flex", alignItems: "center", width: "80%", justifyContent: "space-around" }}>
-                        {/* <HomeMap /> */}
-                        <OtherInfo data={currentWeatherData} />
+                    <div className="section_map_other" >
+                         <HomeMap />
+                         <OtherInfo data={currentWeatherData} />
                     </div>
                 </div>          
             )}

@@ -1,0 +1,25 @@
+.update_btn {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+   
+    
+}
+.active_update {
+    animation: spin 1s linear infinite;
+}
+.update_btn>img {
+    width: 35px;
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
