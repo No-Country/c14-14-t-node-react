@@ -8,6 +8,7 @@ import Home from "./Home/Home"
 import SignOut from './SignOut';
 /* import LocationWeather from "./LocationWeather/LocationWeather"; */
 import Forecast from "./Forecast";
+import { Logo } from "./logo/Logo";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
      <div id="App" className="container AppContainer d-flex ">
       <UserProvider>
         <BrowserRouter>
+        <Logo/>
         <nav className=""><NavBar /></nav>
         <div className="w-100">
           <Routes>
