@@ -22,13 +22,22 @@ Este es un proyecto de aplicación web que te permite consultar el clima actual 
 
 * Guardado de Ciudades Favoritas: Los usuarios pueden guardar ciudades en sus favoritos para acceder rápidamente a la información del clima de sus ubicaciones frecuentes.
 
+## Links útiles
+* Figma: https://www.figma.com/file/4uIue0Z43txqbDIbbiqXSQ/Weather-Web-App?type=design&node-id=0-1&mode=design&t=KTnAnjPw1p2iQJg3-0
+* Presentación YouTube: ...
+ 
 ### Conclusión
-WeatherApp es útil para aquellas personas que deseen información actual del clima actual como el clima en algún destino al que quiera aventurarse en días futuros contando con búsqueda de destino, clima y clima extendido del mismo para así poder tomar las mejor decisión a la hora de disfrutar sus días en el destino elegido.
+WeatherApp es útil para aquellas personas que deseen información actual del clima actual como el clima en algún destino al que quiera aventurarse en días futuros contando con búsqueda de destino, clima y clima extendido del mismo para así poder tomar las mejor 
+decisión a la hora de disfrutar sus días en el destino elegido.
 
 
 
-WeatherRoute
+
+
+
+
+(WeatherRoute
 WeatherRoute es una aplicación multiplataforma con la que podrás tener información del clima con sólo abrirla en tu dispositivo.
 WeatherRoute consta de dos paneles. En el izquierdo se muestra la ubicación del dispositivo del usuario en el mapa, como así también información del clima en ese momento.
-Un cuadro de búsqueda al centro superior de la pantalla es donde el usuario debe introducir el destino de su preferencia, para luego de confirmarlo, en el panel derecho se mostrará un mapa con un marcador señalando el destino introducido con con información del clima de ese destino e información de clima extendido.
-  
+Un cuadro de búsqueda al centro superior de la pantalla es donde el usuario debe introducir el destino de su preferencia, para luego de confirmarlo, en el panel derecho se mostrará un mapa con un marcador señalando el destino introducido con con información del 
+clima de ese destino e información de clima extendido.)
