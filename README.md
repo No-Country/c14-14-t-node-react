@@ -27,7 +27,7 @@ Este es un proyecto de aplicación web que te permite consultar el clima actual 
 * Presentación YouTube: ...
  
 ### Conclusión
-WeatherApp es útil para aquellas personas que deseen información actual del clima actual, así como del clima en algún destino al que quieran aventurarse en días futuros para así poder tomar las mejor decisión y disfrutar sus días al máximo de forma fácil, rápida y segura. 
+WeatherApp es útil para aquellas personas que deseen información actual del clima actual, así como del clima en algún destino al que quieran aventurarse en días futuros para así poder tomar la mejor decisión y disfrutar sus días al máximo de forma fácil, rápida y segura. 
 
 
 
