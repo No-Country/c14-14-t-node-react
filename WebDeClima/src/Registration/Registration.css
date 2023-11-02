@@ -40,6 +40,9 @@ body {
     html {
         background-size: cover; 
     }
+    .LoginRegistration{
+        margin-top: 70px;
+    }
 }
 
 @media (max-width: 375px) {

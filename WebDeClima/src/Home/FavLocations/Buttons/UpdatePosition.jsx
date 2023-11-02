@@ -6,7 +6,6 @@ export const UpdatePosition = ({setUserPosition}) => {
     function success(position) {
         let latitud = position.coords.latitude;
         let longitud = position.coords.longitude;
-      
         setUserPosition(`${latitud},${longitud}`)
         console.log(position);
     }

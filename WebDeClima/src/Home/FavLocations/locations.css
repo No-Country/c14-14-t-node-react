@@ -1,32 +1,21 @@
 .fav_locations_container {
- 
     height: 250px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     margin: auto;
-
-width: 80%;
+    width: 80%;
 }
  .fav_locations {
     display: flex;
     justify-content: flex-start;
     gap: 10px;
- 
     margin-top: 10px; 
     width: 80%;
-  
- 
-   
-    
- 
-   
 } 
 
  .favLocations_item {
-  /*  background-image: url("/public/iconos/textura_grano_fino.png"); */
-    /* background-color: rgba(120,120,120,0.2);  */
-       background-color: rgba(255,255,255,0.1); 
+    background-color: rgba(255,255,255,0.1); 
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -35,36 +24,23 @@ width: 80%;
     width: 140px;
     padding: 10px;
     border-radius: 10px;
-    cursor: pointer;
-
-    
+    cursor: pointer;   
 }
 .favLocations_item:hover {
-    /* background-image: url("/public/iconos/textura_grano_fino.png"); */
     background-color:rgba(39,56,89,0.2);
-
-   
-
 } 
-
 
 .corazon_container {
     position: absolute;
     bottom: 12px;
     right: 12px;
-    
     cursor: pointer;
-    width: 50px;
-    
-    
-    
+    width: 50px;   
 }
 .heart_buttons {
     border: none;
     background: none;
     width: 25px;
-    
-
 }
 .arrows_container_2 {
     position: absolute;
@@ -82,25 +58,11 @@ width: 80%;
     width: 20px;
 }
 
-/* .actualizar_btn {
-   border: none;
-   background: none;
-   color: #04f; 
-}
-.actualizar_btn:hover {
-border: 2px solid gainsboro;
-border-radius: 10px;
-color: black;
-
-} */
-/*style={{display: "flex", justifyContent: "space-around", marginBottom: "10px", width: "60%", background: "#ff0"}}
-*/ 
 .arrows_h5_container {
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
     width: 60%;
-    
 }
 
 @media (min-width: 280px) {
@@ -161,7 +123,6 @@ color: black;
 
 }
 
-
 @media (min-width: 576px) { 
     .fav_locations_container {
         height: 360px;
@@ -179,73 +140,48 @@ color: black;
     }
     .arrows_container_2 {
       
-        /* right: 25%; */
         position: initial;
         width: 23vw;
         margin: auto;
         margin-top: 10px;
     }
-  /* .fav_locations{ */
-    /* height: 500px; */
-  
-  
- 
 }
 
 
 @media (min-width: 768px) {
     .fav_locations_container {
-        /* height: 260px;
-        margin-top: 0; */
-       
         align-items: center;
-       
-  
     }
     .fav_locations {
-        
         justify-content: center;
     }
     .favLocations_item {
         width: 15vw;
-         
      }
-    /* .fav_locations {
-      
-    } */
     .arrows_h5_container {
         width: 100%;
-       justify-content: space-between;
-       
-       height: 100px;
-       margin-top: 15px;
+        justify-content: space-between;
+        height: 100px;
+        margin-top: 15px;
         width: 70%;
     }
     .arrows_container_2 {
         right: 0;
         width: 12vw;
          margin-top: 10px; 
-        
-        
-       
     }
-  
  }
 
 @media (min-width: 992px) {
     .fav_locations_container {
         height: 280px;
         margin-top: 0;
-     
-  
     }
     .fav_locations {
-        
         justify-content: center;
     }
     .favLocations_item {
         width: 12vw;
-         
      }
 
     .arrows_h5_container {
@@ -253,49 +189,31 @@ color: black;
         justify-content: space-between;
         margin-bottom: 10px;
         flex-direction: row;
-       align-items: center;
+        align-items: center;
         width: 55%;
         margin-right: 35%; 
     }
     .arrows_container_2 {
-         right: 5%;
+        right: 5%;
         position: absolute;
-        
-       
     }
    
  }
 @media (min-width: 1500px) {
    .fav_locations_container {
-    margin-top: 10px;
-   
-   position: relative;
-    width: 70%;
-    margin-right: 12%;
-    align-items: flex-start;
-    height: 300px;
-    
+        margin-top: 10px;
+        position: relative;
+        width: 70%;
+        margin-right: 12%;
+        align-items: flex-start;
+        height: 300px;
    }
-    /* .fav_locations {
-        /* justify-content: center; */
-        /* background-color: red; */
-        /* overflow: hidden; 
-       
-      
-       
-        
-    }
-     */
     .arrows_h5_container {
-         /* display: flex; 
-         justify-content: space-around;  */
-         justify-content: space-between;
+        justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
         width: 60%;
         margin-top: 1%;  
-  
-        
     }
     .arrows_container_2 {
          position: absolute;
@@ -303,8 +221,6 @@ color: black;
         top: 1%;
         width: 7vw;
         display: flex;
-       
-       
         justify-content: space-between;
         z-index: 200;
     }

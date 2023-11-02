@@ -11,40 +11,40 @@ const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide,
    
   return (
     <div className="w-100">
-                    <div className="currentWeather">
-                        {
-                        data !== undefined ? (
-                            <div className="forecast_container">
-                                <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
-                                <div className="d-flex justify-content-around w-50">
-                                    <h5>{formatLocalTime(data.location.localtime)}</h5>
-                                </div>
-                                <div> 
-                                    <h3>{data.location.name}, {data.location.region}</h3>
-                                </div>
-                                <div>
-                                    <h1>{data.current.temp_c} ºC</h1>
-                                </div>
-                                <p className="m-0 p-0">{data.forecast.forecastday[0].day.condition.text}</p>
-                                <div className="d-flex flex-column m-0 p-0">
-                                    <p className="m-0 p-0">Máxima: {data.forecast.forecastday[0].day.maxtemp_c}ºC Mínima: {data.forecast.forecastday[0].day.mintemp_c}ºC</p>
-                                </div>
-                                <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
-                                    { corazonState ?
-                                        <DelFavBtn
-                                            uid={signedUser.uid}
-                                            cityName={/* currentWeatherData ? currentWeatherData.location.name : */ data.location.name}
-                                        />
-                                        :
-                                        <AddFavBtn
-                                            uid={signedUser.uid}
-                                            cityName={/* currentWeatherData ? currentWeatherData.location.name :  */data.location.name}
-                                        />
-                                    } 
-                                </div>
-                            </div>
-                        ) : "No se encontro informacion"}   
+        <div className="currentWeather">
+            {
+               data !== undefined ? (
+                    <div className="forecast_container">
+                        <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
+                        <div className="d-flex justify-content-around w-50">
+                            <h5>{formatLocalTime(data.location.localtime)}</h5>
+                        </div>
+                        <div> 
+                            <h3>{data.location.name}, {data.location.region}</h3>
+                        </div>
+                        <div>
+                            <h1>{data.current.temp_c} ºC</h1>
+                        </div>
+                        <p className="m-0 p-0">{data.forecast.forecastday[0].day.condition.text}</p>
+                        <div className="d-flex flex-column m-0 p-0">
+                            <p className="m-0 p-0">Máxima: {data.forecast.forecastday[0].day.maxtemp_c}ºC Mínima: {data.forecast.forecastday[0].day.mintemp_c}ºC</p>
+                        </div>
+                        <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
+                            { corazonState ?
+                                <DelFavBtn
+                                    uid={signedUser.uid}
+                                    cityName={data.location.name}
+                                />
+                                :
+                                <AddFavBtn
+                                    uid={signedUser.uid}
+                                    cityName={data.location.name}
+                                />
+                            } 
+                        </div>
                     </div>
+                ) : "No se encontro informacion"}   
+        </div>
                     <div className="days_arrows_container">
                         <div className="days_container">
                             <span className={showDays ? "disable_days me-1" : "active_days"} onClick={handleSliders}>Hoy</span>
@@ -55,7 +55,7 @@ const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide,
                             <button onClick={handleNextSlide} className='arrows'><img src="./iconos/right_arrow.png" alt="Deslizar a la derecha" /></button>
                         </div>
                     </div>
-                            <div className="lineHome"></div>
+                    <div className="lineHome"></div>
                     <div className="m-5 w-100">
                         { showDays ? 
                             <DaysCards
@@ -63,20 +63,19 @@ const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide,
                                 slide={slide}
                             />
                             :
-
                             <HoursCards
                                 data={data}
                                 slide={slide}
                             />
                         }
-                       {data && data.location && (
+                        {data && data.location && (
                             <div className='collapseForecast'>
                                 <button
-                                className="btn btn-outline-dark buttonHover rounded-pill mt-3"
-                                type="button"
-                                onClick={toggleForecastCollapse}
+                                    className="btn btn-outline-dark buttonHover rounded-pill mt-3"
+                                    type="button"
+                                    onClick={toggleForecastCollapse}
                                 >
-                                Ver Pronóstico Extendido
+                                    Ver Pronóstico Extendido
                                 </button>
                                 <div className={`collapse ${isForecastCollapsed ? '' : 'show'}`} id="collapseExample">
                                 <div className="card card-body forecastContainer">
@@ -84,14 +83,13 @@ const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide,
                                 </div>
                                 </div>
                             </div>
-                            )}
-
+                        )}
                     </div>
-                    <div className="section_map_other">
-                         <HomeMap/> 
-                        <OtherInfo data={data} />
-                    </div>
-                </div>
+        <div className="section_map_other">
+                <HomeMap/> 
+            <OtherInfo data={data} />
+        </div>
+    </div>
   )
 }
 

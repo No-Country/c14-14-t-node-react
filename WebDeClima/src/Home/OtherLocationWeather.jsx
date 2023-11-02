@@ -78,7 +78,7 @@ const OtherLocationWeather = ({ currentWeatherData, city, showDays, handleSlider
                         }
                             <div>
                                 <button
-                                    className="btn btn-light buttonHover"
+                                    className="btn btn-outline-dark buttonHover rounded-pill mt-3"
                                     type="button"
                                     onClick={toggleForecastCollapse}
                                 >

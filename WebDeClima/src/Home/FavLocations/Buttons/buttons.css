@@ -4,8 +4,6 @@
     position: absolute;
     top: 3%;
     left: 3%;
-   
-    
 }
 .active_update {
     animation: spin 1s linear infinite;
