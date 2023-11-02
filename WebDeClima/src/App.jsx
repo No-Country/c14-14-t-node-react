@@ -17,14 +17,15 @@ function App() {
       <UserProvider>
         <BrowserRouter>
         <Logo/>
-        <nav className=""><NavBar /></nav>
-        <div className="w-100">
+        <nav className="navbar"><NavBar /></nav>
+        <div className="main_app">
           <Routes>
             <Route path='/' element={<Registration/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
-            <Route path='/forecast/:city' element={<Forecast/>}/>
+            <Route path='/forecast' element={<Forecast/>}/>
+            {/* <Route path='/forecast/:city' element={<Forecast/>}/> */}
           </Routes>
           </div>
         </BrowserRouter>

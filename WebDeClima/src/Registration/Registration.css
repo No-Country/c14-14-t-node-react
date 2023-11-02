@@ -36,9 +36,23 @@ body {
     color: red;
 }
 
-/* Media Query para pantallas más pequeñas que 500px */
 @media (max-width: 440px) {
     html {
-        background-size: cover; /* Ajusta la imagen de fondo para cubrir toda la pantalla */
+        background-size: cover; 
+    }
+}
+
+@media (max-width: 375px) {
+    .registrationContainer {
+        padding: 10px; /* Ajusta el espaciado para pantallas muy pequeñas */
+        width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+    }
+    
+    .custom-opacity-bg, .form-floating input {
+        width: 100%; /* Ocupa el ancho completo en pantallas pequeñas */
+        font-size: 14px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
+    html {
+        background-size: cover; 
     }
 }

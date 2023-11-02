@@ -3,8 +3,32 @@
   padding: 0;
   text-align: center;
 }
-.AppContainer {
+/* .AppContainer {
   min-width: 100%;
+  border: 1px solid;
+} */
+.navbar {
+
+height: 400px;
+width: 5vw;
+
+position: absolute;
+left: 2%;
+top: 1%;
+
+
+
+}
+.main_app {
+  
+  width: 95vw;
+
+}
+
+@media (min-width: 250px) and (max-width: 576px) {
+  .AppContainer {
+    justify-content: center;
+  }
 }
 
 
