@@ -23,13 +23,9 @@ export const FavLocationsContainer = () => {
       setSlide((slide) => slide === 0 ? slide = 6 : slide - 1)
   }
 
-
-
-
   const getLocation = async(uid) =>  {
     const querySnapshot = await getDocs(collection(db, `/Clientes/${uid}/Favoritos`));
      // console.log(querySnapshot);
-           
                 setFavLocations(querySnapshot.docs.map(doc => ({id: doc.id,...doc.data()}) ))
            //    console.log(favLocations);
              

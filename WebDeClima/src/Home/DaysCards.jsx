@@ -3,7 +3,7 @@ import { UserContext } from '../context/userContext'
 import { useFetch } from '../Hooks/useFetch'
 import { Spinner } from './Spinner/Spinner'
 
-export const DaysCards = ({slide, city}) => {
+export const DaysCards = ({city, slide}) => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
 
     function success(position) {
@@ -38,29 +38,23 @@ export const DaysCards = ({slide, city}) => {
   
   return (
     <div className={(data !== undefined) ? 'hoursCards_container container' : "centrar_spiner"} >
-{  
-  <div  style={{ transform: `translateX(-${slide * 10}%`, display: "flex", gap: "10px" }}  >
-      {
-        (data !== undefined) ? 
-            data.forecast.forecastday.map((element,index) => (
-            <div key={index} className= 'hoursCard_item'> 
-           
-                <span>{nameDay(element.date)} </span>
-                <span>{element.date.slice(8,)} </span>
-                <img src={element.day.condition.icon} alt="" />
-                <div>
-                    <span>{element.day.avgtemp_c}</span>
-                    <span>  ºC</span>
-                </div>
-
-                
+        {  
+            <div className='justify-content-between' style={{ transform: `translateX(-${slide * 10}%`,display: "flex", gap: "10px" }}  >
+                { 
+                    (data !== undefined) ? data.forecast.forecastday.map((element,index) => (
+                        <div key={index} className= 'hoursCard_item m-2' style={{ height: "200px", width: "150px"}}>
+                            <h4>{nameDay(element.date)} </h4>
+                            <h3>{element.date.slice(8,)} </h3>
+                            <img src={element.day.condition.icon} alt="" />
+                            <div>
+                                <h4>{element.day.avgtemp_c} ºC</h4>
+                            </div>  
+                        </div>
+                        )
+                    ): <Spinner/>
+                }  
             </div>
-            ))
-                : <Spinner/>
         }  
-      
-    </div>}
-   
     </div>
   )
 }

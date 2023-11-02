@@ -3,12 +3,11 @@
     height: 250px;
     display: flex;
     flex-direction: column;
-   
-
-
+    
+    width: 80%;
     overflow: hidden;
-    
-    
+
+    margin: auto;
   
 }
  .fav_locations {
@@ -244,8 +243,10 @@ color: black;
    
  }
 @media (min-width: 1500px) {
+  
     .fav_locations {
         justify-content: center;
+      
        
         
     }

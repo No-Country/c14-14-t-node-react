@@ -6,7 +6,6 @@ import NavBar from './NavBar/Navbar'
 import Login from "./Login/Login";
 import Home from "./Home/Home"
 import SignOut from './SignOut';
-/* import LocationWeather from "./LocationWeather/LocationWeather"; */
 import Forecast from "./Forecast";
 import { Logo } from "./logo/Logo";
 
@@ -14,7 +13,7 @@ import { Logo } from "./logo/Logo";
 function App() {
   return (
     <>
-     <div id="App" className="container AppContainer d-flex ">
+     <div id="App" className="container AppContainer d-flex p-0 m-0"  style={{ position: 'relative' }}>
       <UserProvider>
         <BrowserRouter>
         <Logo/>
@@ -25,8 +24,7 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/signOut' element={<SignOut/>}/>
-            {/* <Route path='/locationWeather' element={<LocationWeather/>}/> */}
-           
+            <Route path='/forecast/:city' element={<Forecast/>}/>
           </Routes>
           </div>
         </BrowserRouter>

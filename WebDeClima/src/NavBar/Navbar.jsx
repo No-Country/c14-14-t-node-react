@@ -29,21 +29,7 @@ const LogInLinks = () => {
     );
   } else {
     return (
-      <div className="nav-links">
-       {/*  <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul> */}
+      <div className="nav-links mt-4">
         <NavLink to="/home" className="m-3 nav-link">
           <button type="button" className="btn btn-outline-dark buttonHover rounded-pill">
             <AiOutlineHome/>
@@ -68,7 +54,7 @@ const NavBar = () => {
   return (
     <div className="container-fluid nav_container">
       <div className="row">
-        <div className="d-flex">
+        <div className="navLinks d-flex">
           <LogInLinks></LogInLinks>
         </div>
       </div>

@@ -142,17 +142,17 @@ const Home = () => {
 
     
     return (
-        <div className="home_container container-fluid justify-content-center">
-            <div className='d-flex text-center mt-5 justify-content-center'>
+        <div className="home_container container-fluid justify-content-center m-0 p-0">
+            <div className='d-flex text-center justify-content-center pt-5 searchDiv'>
                 <input className="form-control custom-opacity-bg shadow-lg w-50 border-0" placeholder="El clima en..." onChange={(e) => { setCity(e.target.value) }} />
                 <button type="submit" className="btn ms-2 btn-outline-light rounded-pill" onClick={getCurrentWeatherData} variant="primary"><BsSearch/></button>
             </div>
-            <h2 className="mb-5 mt-3">Hola {signedUser.displayName}!</h2>
+            <h2 className="titleName mb-5 pb-3 mt-3">¡Hola {signedUser.displayName}!</h2>
             {!searchPerformed ? (
-                <div className="">
-                    <div>
+                <div className="w-100">
+                    <div className="currentWeather">
                         {data !== undefined ? (
-                            <div className="forecast_container w-25">
+                            <div className="forecast_container">
                                 <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
                                 <UpdatePosition setUserPosition={setUserPosition}/>
                                 <div className="d-flex justify-content-around w-50">
@@ -199,7 +199,7 @@ const Home = () => {
                     </div>
                             {/* <div style={{height: "1px", border: "1px solid", marginTop: "3%",marginBottom: "2%"}}></div> */}
                             <div className="lineHome"></div>
-                    <div style={{ marginBottom: "2%" }}>
+                    <div className="mb-5 w-100 ">
                         { showDays ? 
                             <DaysCards
                                 city={data.location.name}
@@ -212,11 +212,20 @@ const Home = () => {
                                 slide={slide}
                             />
                         }
+                        {data && data.location && (
+                            <div>
+                                <Link to={`/forecast/${data.location.name}`}>
+                                <button className="btn">Ver Pronostico extendido</button>
+                                </Link>
+                            </div>
+                            )}
                     </div>
+
                    {/*  <div >
                         <Link to={`/forecast/${data.location.name}`}><button className="btn">Ver Pronostico extendido</button></Link>
                     </div> */}
                     <div className="section_map_other">
+
                          <HomeMap position={latLong}/> 
                         <OtherInfo data={data} />
                     </div>
@@ -248,9 +257,7 @@ const Home = () => {
                                     <span>max: {currentWeatherData.forecast.forecastday[0].day.maxtemp_c} ºC </span>
                                 </div>
                                 <span>{currentWeatherData.location.localtime}</span>
-                                <div>
-                                    <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
-                                </div>
+                               
                                 <div className="corazon_container" onClick={()=>setCorazonState(!corazonState)}>
                                     { corazonState ?
                                         <DelFavBtn
@@ -291,14 +298,23 @@ const Home = () => {
                                 slide={slide}
                             />
                         }
+                        {data && data.location && (
+                            <div>
+                                <div>
+                                    <Link to={`/forecast/${city}`}><button className="btn">Ver Pronostico extendido</button></Link>
+                                </div>
+                            </div>
+                            )}
                     </div>
+
                     <div className="section_map_other" >
                          <HomeMap />
                          <OtherInfo data={currentWeatherData} />
-                    </div>
+
+                                </div>
+*                   
                 </div>          
             )}
-            <hr />
             <div>
                 <FavLocationsContainer data={currentWeatherData || data}/>
             </div>    
