@@ -14,31 +14,41 @@ const LogInLinks = () => {
 
   if (!isUserLoggedIn) {
     return (
-      <div className="nav-links ">
-        <NavLink to="/login" className="m-3 nav-link">
-          <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
-            Iniciar Sesión
-          </button>
-        </NavLink>
-        <NavLink to="/" className="m-3 nav-link">
-          <button type="button" className="btn btn-outline-secondary buttonHover rounded-pill registrationButton">
-            Registrarme
-          </button>
-        </NavLink>
-      </div>
+      // <div className="nav-links ">
+      //   <NavLink to="/login" className="m-3 nav-link">
+      //     <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
+      //       Iniciar Sesión
+      //     </button>
+      //   </NavLink>
+      //   <NavLink to="/" className="m-3 nav-link">
+      //     <button type="button" className="btn btn-outline-secondary buttonHover rounded-pill registrationButton">
+      //       Registrarme
+      //     </button>
+      //   </NavLink>
+      // </div>
+       ""
     );
   } else {
     return (
       <div className="nav-links mt-4">
         <NavLink to="/home" className="m-3 nav-link">
           <button type="button" className="btn btn-outline-dark buttonHover rounded-pill">
+          
+
             <AiOutlineHome/>
+       
           </button>
         </NavLink>
         <NavLink to="/home" className="m-3 nav-link">
           <button type="button" className="btn btn-outline-dark buttonHover rounded-pill">
-            <FaHeart/>
+        
+
+            <FaHeart />
+   
+          
           </button>
+          
+   
         </NavLink>
         <NavLink to="/signOut" className="m-3 nav-link">
           <button type="button" className="btn btn-outline-dark buttonHover rounded-pill">

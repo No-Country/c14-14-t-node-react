@@ -8,10 +8,12 @@ import Forecast from '../Forecast'
 import { DaysCards } from './DaysCards'
 
 const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide, handleNextSlide, slide, formatLocalTime, corazonState, signedUser, toggleForecastCollapse, isForecastCollapsed}) => {
+   
   return (
     <div className="w-100">
                     <div className="currentWeather">
-                        {data !== undefined ? (
+                        {
+                        data !== undefined ? (
                             <div className="forecast_container">
                                 <img src={data.forecast.forecastday[0].day.condition.icon}  alt="icon-forecast" className="icon_forecast"/>
                                 <div className="d-flex justify-content-around w-50">

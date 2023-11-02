@@ -17,7 +17,7 @@ const Home = () => {
     const [currentWeatherData, setCurrentWeatherData] = useState(null);
     const [searchPerformed, setSearchPerformed] = useState(false);
     const [isForecastCollapsed, setIsForecastCollapsed] = useState(true);
-    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${userPosition}&days=1&aqi=no&alerts=no&lang=es`
+    const URL = `https://api.weatherapi.com/v1/forecast.json?key=519125c955044ba5924184548230211&q=${userPosition}&days=1&aqi=no&alerts=no&lang=es`
     const { signedUser, favLocations, setFavLocations } = useContext(UserContext)
     const [corazonState, setCorazonState] = useState(false)
     const [showDays, setShowDays] = useState(false)
@@ -79,7 +79,7 @@ const Home = () => {
     const handleHearts = (city) => {
            let tieneValorEspecifico = favLocations.some(element => Object.values(element).includes(city));
            setCorazonState(tieneValorEspecifico)
-           console.log(corazonState,city);
+          
     }
 
     const toggleForecastCollapse = () => {
@@ -92,13 +92,13 @@ const Home = () => {
           setLoading(true);
     
           const response = await axios.get(
-            `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${city}&days=1&aqi=no&alerts=no&lang=es`
+            `https://api.weatherapi.com/v1/forecast.json?key=519125c955044ba5924184548230211&q=${city}&days=1&aqi=no&alerts=no&lang=es`
           );
     
           setCurrentWeatherData(response.data);
-          console.log(currentWeatherData);
+          
           handleHearts(response.data.location.name);
-          console.log(response.data.location.name);
+         
           setSearchPerformed(true); 
         } catch (e) {
           setError(e);

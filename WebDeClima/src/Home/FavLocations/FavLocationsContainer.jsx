@@ -48,11 +48,17 @@ getLocation(uid)
 
   return (
     <div className='fav_locations_container'>
+     
       <div className="arrows_h5_container" >
-        <h5 style={{color: "#625B71"}}>Mis direcciones frecuentes</h5>
+      
+      <div>
+      <h5 style={{color: "#625B71"}}>Mis direcciones frecuentes</h5> 
+        </div>  
         
+    <div>
 
         <GetFavLocations uid={uid}/>
+    </div>
         
         
         <div className='arrows_container_2'> 
@@ -60,7 +66,6 @@ getLocation(uid)
           <button className='arrows' onClick={()=>handleNextSlide()}><img src="./iconos/right_arrow.png" alt="Deslizar a  la derecha" /></button>
         </div>
 
-     
 
 
       {/* <button onClick={()=>getLocation(uid)}>Get loc</button> */}
@@ -71,7 +76,7 @@ getLocation(uid)
           {
            favLocations && favLocations.map(element => (
               
-              <FavLocationItems onCardClick= {onCardClick} city={element.cityName} key={element.id} uid={uid}/>
+              <FavLocationItems onCardClick={onCardClick} city={element.cityName} key={element.id} uid={uid}/>
             ))
           }
             

@@ -18,8 +18,9 @@ export const DaysCards = ({city, slide}) => {
           console.log("ubicacion obtenida");
       } else { "No se pudo obtener la ubicacion" }
   }
+  // 5437eae8999f4d86880185553231910
 
-    const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${city || userPosition}&days=10&aqi=no&alerts=no`
+    const URL = `https://api.weatherapi.com/v1/forecast.json?key=519125c955044ba5924184548230211&q=${city || userPosition}&days=10&aqi=no&alerts=no`
 
   //  const URL = `https://api.weatherapi.com/v1/forecast.json?key=5437eae8999f4d86880185553231910&q=${city || userPosition}&days=10&aqi=no&alerts=no`
     const {data} = useFetch(URL)
@@ -37,7 +38,7 @@ export const DaysCards = ({city, slide}) => {
     }
   
   return (
-    <div className={(data !== undefined) ? 'hoursCards_container container' : "centrar_spiner"} >
+    <div className={(data !== undefined) ? 'hoursCards_container container_fluid' : "centrar_spiner"} >
         {  
             <div className='justify-content-between' style={{ transform: `translateX(-${slide * 10}%`,display: "flex", gap: "10px" }}  >
                 { 
