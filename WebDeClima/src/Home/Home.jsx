@@ -9,7 +9,7 @@ import { BsSearch } from 'react-icons/bs';
 import CurrentLocationWeather from "./CurrentLocationWeather";
 import OtherLocationWeather from "./OtherLocationWeather";
 
-const Home = () => {
+const Home = ({ scrollToSection }) => {
     const [userPosition, setUserPosition] = useState("Buenos Aires")
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false);
@@ -23,11 +23,20 @@ const Home = () => {
     const [showDays, setShowDays] = useState(false)
     const { data } = useFetch(URL)
     const [slide, setSlide] = useState(0)
-    const [slider, setSlider] = useState(7)
+    const [slider, setSlider] = useState(8)
     const [latLong, setLatLong] = useState({
         lat: "-24.52713",
         long: "-43.59375;2"
     })
+    const [scrolling, setScrolling] = useState(false);
+    useEffect(() => {
+        if (scrollToSection) {
+          const sectionRef = document.getElementById("sectionToScrollTo");
+          if (sectionRef) {
+            sectionRef.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, [scrollToSection]);
 
     const handleNextSlide = () => {
         setSlide((slide) => slide === slider ? slide = 0 : slide + 1)
@@ -38,7 +47,7 @@ const Home = () => {
     }
     
     const handleSliders = () => {
-        if(!showDays && slider == 7) {
+        if(!showDays && slider == 8) {
             setShowDays(true)
             setSlider(3)
         }else {
@@ -147,8 +156,7 @@ const Home = () => {
                     isForecastCollapsed={isForecastCollapsed}/>
                         
             )}
-            <div>
-                {/* <FavLocationsContainer data={currentWeatherData || data}/> */}
+            <div id="sectionToScrollTo">
                 <FavLocationsContainer
                         data={currentWeatherData || data}
                         onCardClick={handleFavCardClick}

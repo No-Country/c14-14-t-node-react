@@ -127,7 +127,7 @@ const Registration = () => {
     return (
         <>
         <div className="registrarse">
-            <div className="nav-links d-flex justify-content-center">
+            <div className="nav-links d-flex justify-content-center LoginRegistration">
                 <NavLink to="/login" className="m-3 nav-link">
                 <button type="button" className="btn btn-outline-white buttonHover rounded-pill loginButton">
                     Iniciar Sesión

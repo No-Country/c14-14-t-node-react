@@ -2,7 +2,7 @@ import React from 'react';
 
 export const OtherInfo = ({ data }) => {
   return (
-    <div >
+    <div className='other_info_max_container'>
       {data && data.forecast && data.forecast.forecastday && data.forecast.forecastday[0] && data.forecast.forecastday[0].astro ? (
         <div className='other_info_container'>
           <div className='other_info_item'>
