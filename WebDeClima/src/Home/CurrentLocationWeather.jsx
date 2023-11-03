@@ -56,7 +56,7 @@ const CurrentLocationWeather = ({data, showDays, handleSliders, handlePrevSlide,
                         </div>
                     </div>
                             <div className="lineHome"></div>
-                    <div className="m-5 w-100">
+                    <div className="w-75" style={{margin: "auto"}}>
                         { showDays ? 
                             <DaysCards
                                 city={data.location.name}

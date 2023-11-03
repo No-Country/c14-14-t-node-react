@@ -13,6 +13,7 @@
   
   height: 400px;
   width: 5vw;
+  border: 1px solid;
   
   position: absolute;
    left: 2%; 
@@ -23,7 +24,8 @@
 
 .main_app {
   
-  width: 95vw;
+  width: 99vw;
+ 
 
 }
 
