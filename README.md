@@ -24,7 +24,8 @@ Este es un proyecto de aplicación web que te permite consultar el clima actual 
 
 ## Links útiles
 * Figma: https://www.figma.com/file/4uIue0Z43txqbDIbbiqXSQ/Weather-Web-App?type=design&node-id=0-1&mode=design&t=KTnAnjPw1p2iQJg3-0
-* Presentación YouTube: ...
+* Presentación YouTube: https://www.youtube.com/watch?v=FUJjrcEY2E4
+* Deploy: https://weatherapp-39.netlify.app/
  
 ### Conclusión
 WeatherApp es útil para aquellas personas que deseen información actual del clima actual, así como del clima en algún destino al que quieran aventurarse en días futuros para así poder tomar la mejor decisión y disfrutar sus días al máximo de forma fácil, rápida y segura. 
